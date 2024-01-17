@@ -96,17 +96,17 @@
 \icmlsetsymbol{equal}{*}
 
 \begin{icmlauthorlist}
-\icmlauthor{Firstname1 Lastname1}{equal,first}
-\icmlauthor{Firstname2 Lastname2}{equal,second}
-\icmlauthor{Firstname3 Lastname3}{equal,third}
-\icmlauthor{Firstname4 Lastname4}{equal,fourth}
+\icmlauthor{Sumitrra Bala Subramaniam}{equal,first}
+\icmlauthor{Jiha Kim}{equal,second}
+\icmlauthor{Frederik Panse}{equal,third}
+\icmlauthor{Kim Isabella Zierahn}{equal,fourth}
 \end{icmlauthorlist}
 
 % fill in your matrikelnummer, email address, degree, for each group member
-\icmlaffiliation{first}{Matrikelnummer 12345678, first.last@student.uni-tuebingen.de, MSc Machine Learning}
-\icmlaffiliation{second}{Matrikelnummer 12345678, first.last@student.uni-tuebingen.de, MSc Computer Science}
-\icmlaffiliation{third}{Matrikelnummer 12345678, first.last@student.uni-tuebingen.de, MSc Media Informatics}
-\icmlaffiliation{fourth}{Matrikelnummer 12345678, first.last@student.uni-tuebingen.de, MSc Medical Informatics}
+\icmlaffiliation{first}{Matrikelnummer 6642271, sumitrra.bala-subramaniam@student.uni-tuebingen.de, MSc Quantitative Data Science Methods}
+\icmlaffiliation{second}{Matrikelnummer 6640082, jiha.kim@student.uni-tuebingen.de, MSc Quantitative Data Science Methods}
+\icmlaffiliation{third}{Matrikelnummer 5810899, frederik.panse@student.uni-tuebingen.de, MSc Quantitative Data Science Methods}
+\icmlaffiliation{fourth}{Matrikelnummer 6635183, kim-isabella.zierahn@student.uni-tuebingen.de, MSc Quantitative Data Science Methods}
 
 % You may provide any keywords that you
 % find helpful for describing your paper; these are used to populate
@@ -132,6 +132,15 @@ Put your abstract here. Abstracts typically start with a sentence motivating why
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
+If a group of Tübinger students would want to take a trip to Frankfurt (Main) by train, there are many possible routes to take. Would they be able to decide beforehand on the most reliable route and the best time to go?
+
+When traveling from one place to another by Deutsche Bahn, passengers often can't rely on arriving at their destination at the scheduled time. Even though real-time train delay is provided by the Deutsche Bahn, informing travelers about current delays, passengers don't have any information about the delay beforehand. Previous studies often focused on predicting train delay \cite{predtraindelay}. Our goal is to identify the most reliable train route going from Stuttgart to Frankfurt (Main).
+
+We are working with \href{https://data.deutschebahn.com/dataset/ist-verkehrsdaten-der-db-cargo-auf-bst8-ebene.html}{train delay data} provided by the Deutsche Bahn, that consists of stations and stops that measured the number of trains and minutes of delay of all trains passing by in 2016. We are also using the corresponding \href{https://data.deutschebahn.com/dataset/betriebsstellen-gueterverkehr.html}{directory of operating sites} and \href{https://data.deutschebahn.com/dataset/betriebsstellen-gueterverkehr.html}{geographical route data} for our analyses.
+
+To analyze the most reliable route going from Stuttgart to Frankfurt (Main), we followed two approaches: route optimization and analysing external influences. The first approach is to find all possible routes going from Stuttgart to Frankfurt (Main) and then identifying the route with the least mean delay (i.e., the most reliable route). The second approach is to investigate whether the day of the week, month, season, or holiday impact the delay.
+
+Our study aims to fill a gap in train delay research by shifting the focus from predicting delays to informing passengers beforehand about the most reliable route and the best time to go. This enables passengers to make informed decision about their journeys. We aim to provide travelers with information, so that they can pick the optimal route with confidence and reliability.
 
 Motivate the problem, situation or topic you decided to work on. Describe why it matters (is it of societal, economic, scientific value?). Outline the rest of the paper (use references, e.g.~to \Cref{sec:methods}: What kind of data you are working with, how you analyse it, and what kind of conclusion you reached. The point of the introduction is to make the reader want to read the rest of the paper.
 
