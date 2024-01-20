@@ -11,19 +11,13 @@ from shapely.geometry import MultiLineString, Point, LineString
 import matplotlib.pyplot as plt
 import networkx as nx
 import os
+import folium
 
 # Print the current working directory
 print("Current working directory: {0}".format(os.getcwd()))
 
-# Change the working directory
-os.chdir('/Users/User2/Desktop/Data Literacy/Data Literacy Project')
-
-# Confirm the change
-print("Working directory changed to: {0}".format(os.getcwd()))
-
-
 # Load the data
-gdf = gpd.read_file('/Users/User2/Downloads/geo-strecke/strecken_polyline.shp')
+gdf = gpd.read_file('../dat/strecken_polyline.shp')
 
 # Define coordinates for Stuttgart and Frankfurt am Main
 x_stuttgart, y_stuttgart = 9.18389001053732, 48.78312377049059
@@ -34,14 +28,15 @@ stuttgart_point = Point(x_stuttgart, y_stuttgart)
 frankfurt_point = Point(x_frankfurt, y_frankfurt)
 
 # Group by 'strecke_nr' and create a MultiLineString for each unique 'strecke_nr'
-continuous_routes = gdf.groupby('strecke_nr')['geometry'].apply(lambda x: MultiLineString(x.tolist()))
+continuous_routes = (gdf.groupby('strecke_nr')['geometry'].apply(lambda x:
+                       MultiLineString(x.tolist())))
 continuous_gdf = gpd.GeoDataFrame(continuous_routes, columns=['geometry'])
 continuous_gdf['strecke_nr'] = continuous_gdf.index
 
 def find_route_connections(start_route, other_routes, threshold=50):
     connections = []
     start_route_num = start_route['strecke_nr']
-    for idx, other_route in other_routes.iterrows():
+    for idx, other_route in other_routes.iterrows(): 
         other_route_num = other_route['strecke_nr']
         # Check and handle LineString and MultiLineString for start route
         if isinstance(start_route['geometry'], LineString):
@@ -54,11 +49,11 @@ def find_route_connections(start_route, other_routes, threshold=50):
             other_geoms = [other_route['geometry']]
         elif isinstance(other_route['geometry'], MultiLineString):
             other_geoms = list(other_route['geometry'])
-
+        
         # Check distances between all parts of start_geoms and other_geoms
-        for part_start in start_geoms:
-            for part_other in other_geoms:
-                if part_start.distance(part_other) < threshold:
+        for part_start in start_geoms: 
+            for part_other in other_geoms: 
+                if part_start.distance(part_other) < threshold: 
                     connections.append((start_route_num, other_route_num))
                     break
             if connections:
@@ -91,8 +86,6 @@ plt.show()
 
 
 "Checking how many Linestring and how many Multiline string objects we have"
-import geopandas as gpd
-from shapely.geometry import LineString, MultiLineString
 
 # Assuming gdf is your GeoDataFrame
 line_count = 0
@@ -111,7 +104,6 @@ print("Number of MultiLineString objects:", multiline_count)
 
 
 "Plotting all continuous routes"
-import folium
 from shapely.geometry import MultiLineString, LineString
 
 # Assuming continuous_gdf is your GeoDataFrame with MultiLineString geometries
