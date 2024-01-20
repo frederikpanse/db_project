@@ -7,7 +7,6 @@ Created on Tue Jan 16 16:45:37 2024
 """
 
 import geopandas as gpd
-import shapely
 from shapely.geometry import MultiLineString, Point, LineString
 import matplotlib.pyplot as plt
 import networkx as nx
