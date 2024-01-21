@@ -4,16 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="Adding the Introduction &amp; authors to tex" />
+    <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="Adding the Introduction &amp; authors to tex">
+      <change afterPath="$PROJECT_DIR$/.idea/db_project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all data_Carto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all data_osm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_weekend_weekday_osm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/fig/weekend_weekday.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exp/exploration_cleaning.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exp/exploration_cleaning.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="kim-test" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,20 +60,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.maps_KI_01_all data.executor": "Run",
+    "Python.maps_KI_01_all data_Carto.executor": "Run",
+    "Python.maps_KI_01_all data_osm.executor": "Run",
+    "Python.maps_KI_01_all data_osm2.executor": "Run",
+    "Python.maps_KI_01_all data_osm3.executor": "Run",
+    "Python.maps_KI_01_weekend_weekday_osm.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Kim__visualizations",
+    "last_opened_file_path": "/Users/kim/Desktop/QDS/1. Semester/Data Literacy/db_project/doc/fig",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/doc/fig" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/doc/fig" />
+      <recent name="$PROJECT_DIR$/exp" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -82,6 +116,9 @@
       <workItem from="1705488796542" duration="991000" />
       <workItem from="1705491051898" duration="135000" />
       <workItem from="1705512732326" duration="4000" />
+      <workItem from="1705772024013" duration="77000" />
+      <workItem from="1705772111261" duration="12000" />
+      <workItem from="1705772128064" duration="8070000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <option name="closed" value="true" />
@@ -121,10 +158,39 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test commit" />
     <MESSAGE value="adding the right datasets" />
     <MESSAGE value="Adding the Introduction &amp; authors to tex" />
     <option name="LAST_COMMIT_MESSAGE" value="Adding the Introduction &amp; authors to tex" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="python-line">
+          <url>file://$PROJECT_DIR$/doc/fig/maps_KI_01_weekend_weekday_osm.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm2.coverage" NAME="maps_KI_01_all data_osm2 Coverage Results" MODIFIED="1705825358335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_Carto.coverage" NAME="maps_KI_01_all data_Carto Coverage Results" MODIFIED="1705826518641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data.coverage" NAME="maps_KI_01_all data Coverage Results" MODIFIED="1705775568458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm.coverage" NAME="maps_KI_01_all data_osm Coverage Results" MODIFIED="1705776857672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_weekend_weekday_osm.coverage" NAME="maps_KI_01_weekend_weekday_osm Coverage Results" MODIFIED="1705827552728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm3.coverage" NAME="maps_KI_01_all data_osm3 Coverage Results" MODIFIED="1705826375149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
   </component>
 </project>
