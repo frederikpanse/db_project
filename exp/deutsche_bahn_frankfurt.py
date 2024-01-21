@@ -17,7 +17,8 @@ import folium
 print("Current working directory: {0}".format(os.getcwd()))
 
 # Load the data
-gdf = gpd.read_file('../dat/strecken_polyline.shp')
+gdf = gpd.read_file('./dat/strecken_polyline.shp')
+print(gdf.head())
 
 # Define coordinates for Stuttgart and Frankfurt am Main
 x_stuttgart, y_stuttgart = 9.18389001053732, 48.78312377049059
