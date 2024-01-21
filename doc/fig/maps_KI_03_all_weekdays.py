@@ -201,7 +201,7 @@ ax6.legend(loc = "upper left", frameon = False)
 ax7.legend(loc = "upper left", frameon = False)
 
 #### 03 Save as PDF
-pdf_filename = "maps_KI_01_all_weekdays.pdf"
+pdf_filename = "maps_KI_03_all_weekdays.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")

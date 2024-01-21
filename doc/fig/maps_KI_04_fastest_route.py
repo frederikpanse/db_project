@@ -126,7 +126,7 @@ ax.legend(loc = "upper left", frameon = False)
 
 
 # Save as PDF
-pdf_filename = "maps_KI_01_fastest_route_full.pdf"
+pdf_filename = "maps_KI_04_fastest_route_full.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")
@@ -168,7 +168,7 @@ ax.legend(loc = "upper right", frameon = False)
 
 
 # Save as PDF
-pdf_filename = "maps_KI_01_fastest_route_zoomed.pdf"
+pdf_filename = "maps_KI_04_fastest_route_zoomed.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")
@@ -219,7 +219,7 @@ ax2.legend(loc = "upper right", frameon = False)
 
 
 # Save as PDF
-pdf_filename = "maps_KI_01_fastest_route.pdf"
+pdf_filename = "maps_KI_04_fastest_route.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")

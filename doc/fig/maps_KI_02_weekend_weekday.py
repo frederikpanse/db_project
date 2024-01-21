@@ -120,4 +120,4 @@ fig.suptitle("Mean delay of trains in 2016 in Germany")
 
 
 #### 03 Save as PDF
-plt.savefig("maps_KI_01_weekend_weekday.pdf", bbox_inches = "tight")
+plt.savefig("maps_KI_02_weekend_weekday.pdf", bbox_inches = "tight")
