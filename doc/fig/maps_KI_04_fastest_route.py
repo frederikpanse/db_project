@@ -223,3 +223,10 @@ pdf_filename = "maps_KI_04_fastest_route.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")
+
+
+
+#### 06 mean delay of fastest route
+
+# get the mean delay of the fastest route
+print("The mean delay of the 'fastest' route (according to DB) is", data_delay_routes["Minutes of delay"].mean())

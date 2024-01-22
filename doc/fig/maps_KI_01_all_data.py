@@ -10,7 +10,8 @@ from tueplots import bundles
 
 
 #### 00 get cleaned data
-data = pd.read_csv("data_mean.csv", sep = ";")
+from ipynb.fs.full.exploration_cleaning import get_data
+data = get_data(which = "mean")
 
 # create geometry column with a point object of the coordinates
 geometry = [Point(xy) for xy in zip(data["Coordinate Longitude"], data["Coordinate Latitude"])]

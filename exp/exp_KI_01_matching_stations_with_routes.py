@@ -74,9 +74,17 @@ gdf_stations = pd.read_csv("../dat/cleaned data/gdf_stations.csv")
 print(len(data_mean))
 print(len(gdf_stations))
 
+# -> this matches
+
+
+
 # how many routes do we have?
 print(len(gdf_stations["route_ids"].unique()))
 print(len(data_routes["strecke_nr"].unique()))
 
-# there are some routes that have no data for the delay...
+# -> there are some routes that have no data for the delay...
 
+
+
+def get_data_gdf():
+    return gdf_stations

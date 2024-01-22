@@ -11,7 +11,6 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 #### 00 read cleaned data
 gdf_stations = pd.read_csv("../../dat/cleaned data/gdf_stations.csv", sep = ",")
-data_routes = gpd.read_file("../../dat/geo-strecke/strecken_polyline.shp")
 
 
 
@@ -34,46 +33,16 @@ fastest_route = [80290288, #Stuttgart
 # filter the data for the fastest route
 gdf_stations = gdf_stations[gdf_stations["Station or stop"].isin(fastest_route)]
 
-# create geometry column with a point object of the coordinates
-geometry = [Point(xy) for xy in zip(gdf_stations["Coordinate Longitude"], gdf_stations["Coordinate Latitude"])]
 
-# create GeoDataFrame
-geo_df = gpd.GeoDataFrame(gdf_stations, geometry = geometry, crs = "EPSG:4326")  # Use the correct CRS
-
-# merge the two datasets
-# rename the column "strecke_nr" to "route_ids"
-data_routes = data_routes.rename(columns = {"strecke_nr": "route_ids"})
-data_routes["route_ids"] = data_routes["route_ids"].astype(float)
-data_delay_routes = pd.merge(data_routes, gdf_stations, on = "route_ids", how = "right")
-
-
-
-# create new dataset with colums routes_id, geometry_x, geometry_y, Minutes of delay
-data_delay_routes = data_delay_routes[["Minutes of delay", "route_ids"]].copy()
-
-# calculate mean per route, without index column
-data_delay_routes = data_delay_routes.groupby(["route_ids"]).mean()
-
-# again merge with data_routes to get the geometry
-data_delay_routes = pd.merge(data_delay_routes, data_routes, on = "route_ids", how = "left")
-
-# group the dataset by geometry
-# data_delay_routes = data_delay_routes.groupby(["geometry"]).mean()
-
-# only take columns Minutes of delay, route_ids, geometry
-data_delay_routes = data_delay_routes[["Minutes of delay", "route_ids", "geometry", "Coordinate Longitude", "Coordinate Latitude"]].copy()
-data_delay_routes = data_delay_routes.groupby(["geometry"], as_index = False).mean()
 
 
 
 #### 02 map of Germany
 # Extract LineString coordinates and create LineString geometries & point geometries
-geometry_linestrings = [LineString(x) for x in data_delay_routes["geometry"]]
-geometry_points = [Point(xy) for xy in zip(data_delay_routes["Coordinate Longitude"], data_delay_routes["Coordinate Latitude"])]
+geometry_points = [Point(xy) for xy in zip(gdf_stations["Coordinate Longitude"], gdf_stations["Coordinate Latitude"])]
 
 # Create GeoDataFrame
-geo_df_linestrings = gpd.GeoDataFrame(data_delay_routes, geometry = geometry_linestrings, crs = "EPSG:4326")
-geo_df_points = gpd.GeoDataFrame(data_delay_routes, geometry = geometry_points, crs = "EPSG:4326")
+geo_df_points = gpd.GeoDataFrame(gdf_stations, geometry = geometry_points, crs = "EPSG:4326")
 
 # Get a map of Germany, save as tif
 germany = cx.Place("Deutschland", source = cx.providers.OpenStreetMap.Mapnik)
@@ -86,13 +55,11 @@ bb_poly = box(west, south, east, north)
 bb_poly = gpd.GeoDataFrame({"geometry": [bb_poly]}, crs = germany_crs)
 
 # Overlay with GeoDataFrame for linestrings
-gdf_germany_linestrings = gpd.overlay(geo_df_linestrings, bb_poly.to_crs(geo_df_linestrings.crs), how = "intersection")
-gdf_germany_points = gpd.overlay(geo_df_points, bb_poly.to_crs(geo_df_points.crs), how = "intersection")
+gdf_germany = gpd.overlay(geo_df_points, bb_poly.to_crs(geo_df_points.crs), how = "intersection")
 
 
 # Ensure the data is in the proper geographic coordinate system
-gdf_germany_linestrings = gdf_germany_linestrings.to_crs(epsg = 3395)
-gdf_germany_points = gdf_germany_points.to_crs(epsg = 3395)
+gdf_germany_points = gdf_germany.to_crs(epsg = 3395)
 
 
 
@@ -105,20 +72,17 @@ plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, uset
 # Plot the data
 fig, ax = plt.subplots(figsize = (3, 4))
 
-# add linestrings
-gdf_germany_linestrings.plot(ax = ax, color = "lightsteelblue", linewidth = 1.5, label = '< 6 min')
-
 # add condition for the points
 condition = gdf_germany_points["Minutes of delay"] >= 6
-gdf_germany_points[condition].plot(ax = ax, color = "crimson", markersize = 10, label = '>= 6 min')
-gdf_germany_points[~condition].plot(ax = ax, color = "#19a824", markersize = 10, label = '< 6 min')
+gdf_germany_points[condition].plot(ax = ax, color = "crimson", markersize = 1, label = '>= 6 min')
+gdf_germany_points[~condition].plot(ax = ax, color = "#19a824", markersize = 1, label = '< 6 min')
 
 # Add the base map
-cx.add_basemap(ax = ax, crs = gdf_germany_linestrings.crs, source = "tifs/germany_osm.tif", alpha = 0.7, reset_extent = False)
+cx.add_basemap(ax = ax, crs = gdf_germany_points.crs, source = "tifs/germany_osm.tif", alpha = 0.7, reset_extent = False)
 
 
 # Get the bounds of the geodataframe, converted to the same CRS as the contextily basemap
-bounds = gdf_germany_linestrings.total_bounds
+bounds = gdf_germany_points.total_bounds
 west, south, east, north = bounds
 
 
@@ -133,7 +97,7 @@ ax.legend(loc = "upper left", frameon = False)
 
 
 # Save as PDF
-pdf_filename = "maps_KI_01_fastest_route_full.pdf"
+pdf_filename = "maps_KI_04_fastest_route_points_full.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")
@@ -149,16 +113,17 @@ plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, uset
 fig, ax = plt.subplots(figsize = (3, 6))
 
 
-# add condition for the linestrings
-gdf_germany_linestrings.plot(ax = ax, color = "lightsteelblue", linewidth = 1.5, label = '< 6 min')
-
+# add condition for the points
+condition = gdf_germany_points["Minutes of delay"] >= 6
+gdf_germany_points[condition].plot(ax = ax, color = "crimson", markersize = 10, label = '>= 6 min')
+gdf_germany_points[~condition].plot(ax = ax, color = "#19a824", markersize = 10, label = '< 6 min')
 
 # Add the base map
-cx.add_basemap(ax = ax, crs = gdf_germany_linestrings.crs, source = "tifs/germany_osm.tif", alpha = 0.7, reset_extent = True)
+cx.add_basemap(ax = ax, crs = gdf_germany_points.crs, source = "tifs/germany_osm.tif", alpha = 0.7, reset_extent = True)
 
 
 # Get the bounds of the geodataframe, converted to the same CRS as the contextily basemap
-bounds = gdf_germany_linestrings.total_bounds
+bounds = gdf_germany_points.total_bounds
 west, south, east, north = bounds
 
 
@@ -173,7 +138,7 @@ ax.legend(loc = "upper right", frameon = False)
 
 
 # Save as PDF
-pdf_filename = "maps_KI_01_fastest_route_zoomed.pdf"
+pdf_filename = "maps_KI_04_fastest_route_points_zoomed.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")
@@ -190,24 +155,24 @@ plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, uset
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize = (6, 4))
 
 
-# add condition for the linestrings
-condition = gdf_germany_linestrings["Minutes of delay"] < 6
-gdf_germany_linestrings[condition].plot(ax = ax1, color = "#19a824", linewidth = 1, label = '< 6 min')
-gdf_germany_linestrings[~condition].plot(ax = ax1, color = "crimson", linewidth = 1, label = '>= 6 min')
 
-# add condition for the linestrings
-condition = gdf_germany_linestrings["Minutes of delay"] < 6
-gdf_germany_linestrings[condition].plot(ax = ax2, color = "#19a824", linewidth = 2, label = '< 6 min')
-gdf_germany_linestrings[~condition].plot(ax = ax2, color = "crimson", linewidth = 2, label = '>= 6 min')
+# add condition for the points
+condition = gdf_germany_points["Minutes of delay"] >= 6
+gdf_germany_points[condition].plot(ax = ax1, color = "crimson", markersize = 1, label = '>= 6 min')
+gdf_germany_points[~condition].plot(ax = ax1, color = "#19a824", markersize = 1, label = '< 6 min')
 
+# add condition for the points
+condition = gdf_germany_points["Minutes of delay"] >= 6
+gdf_germany_points[condition].plot(ax = ax2, color = "crimson", markersize = 10, label = '>= 6 min')
+gdf_germany_points[~condition].plot(ax = ax2, color = "#19a824", markersize = 10, label = '< 6 min')
 
 # Add the base map
-cx.add_basemap(ax = ax1, crs = gdf_germany_linestrings.crs, source = "tifs/germany_osm.tif", alpha = 0.7, reset_extent = False)
-cx.add_basemap(ax = ax2, crs = gdf_germany_linestrings.crs, source = "tifs/germany_osm.tif", alpha = 0.7, reset_extent = True, zoom = 100)
+cx.add_basemap(ax = ax1, crs = gdf_germany_points.crs, source = "tifs/germany_osm.tif", alpha = 0.7, reset_extent = False)
+cx.add_basemap(ax = ax2, crs = gdf_germany_points.crs, source = "tifs/germany_osm.tif", alpha = 0.7, reset_extent = True, zoom = 100)
 
 
 # Get the bounds of the geodataframe, converted to the same CRS as the contextily basemap
-bounds = gdf_germany_linestrings.total_bounds
+bounds = gdf_germany_points.total_bounds
 west, south, east, north = bounds
 
 
@@ -224,7 +189,7 @@ ax2.legend(loc = "upper right", frameon = False)
 
 
 # Save as PDF
-pdf_filename = "maps_KI_01_fastest_route.pdf"
+pdf_filename = "maps_KI_04_fastest_route_points.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")

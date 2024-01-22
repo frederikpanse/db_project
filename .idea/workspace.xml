@@ -4,40 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="Adding maps">
-      <change afterPath="$PROJECT_DIR$/.idea/db_project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/cleaned data/gdf_stations.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/Datenstruktur_Strecken.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/Datenstruktur_Strecken_Excel.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.DAT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.ID" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.MAP" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.MID" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.MIF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.TAB" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken_polyline.dbf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken_polyline.prj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken_polyline.sbn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken_polyline.sbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken_polyline.shp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken_polyline.shx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_fastest_route.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_fastest_route_points.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_fastest_vs._most_reliable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exp/exp_KI_01_matching_stations_with_routes.py" afterDir="false" />
+    <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="renaming the docs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all data_Carto.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data_Carto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data_osm.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data_osm.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_possible_routes_osm.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_possible_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_weekdays_osm.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_weekdays_osm.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_weekdays.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_weekend_weekday_osm.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_weekend_weekday_osm.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_weekend_weekday.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exp/deutsche_bahn_frankfurt.py" beforeDir="false" afterPath="$PROJECT_DIR$/exp/deutsche_bahn_frankfurt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route_points.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route_points.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_05_fastest_vs._most_reliable.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_06_all_possible_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_06_all_possible_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exp/exp_FP_01_DifferenceWeekdaysWeekends.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exp/exp_FP_01_DifferenceWeekdaysWeekends.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exp/exp_KI_01_matching_stations_with_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/exp/exp_KI_01_matching_stations_with_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exp/exploration_cleaning.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/exp/exploration_cleaning.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,8 +76,13 @@
     "Python.maps_KI_01_all_weekdays.executor": "Run",
     "Python.maps_KI_01_all_weekdays_osm.executor": "Run",
     "Python.maps_KI_01_fastest_route.executor": "Run",
+    "Python.maps_KI_01_fastest_route_points.executor": "Run",
     "Python.maps_KI_01_weekend_weekday.executor": "Run",
     "Python.maps_KI_01_weekend_weekday_osm.executor": "Run",
+    "Python.maps_KI_02_weekend_weekday.executor": "Run",
+    "Python.maps_KI_03_all_weekdays.executor": "Run",
+    "Python.maps_KI_04_fastest_route.executor": "Run",
+    "Python.maps_KI_04_fastest_route_points.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -113,7 +93,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.general",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -157,7 +137,8 @@
       <workItem from="1705772024013" duration="77000" />
       <workItem from="1705772111261" duration="12000" />
       <workItem from="1705772128064" duration="12736000" />
-      <workItem from="1705844467375" duration="8334000" />
+      <workItem from="1705844467375" duration="8696000" />
+      <workItem from="1705918579366" duration="1634000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <option name="closed" value="true" />
@@ -199,7 +180,39 @@
       <option name="project" value="LOCAL" />
       <updated>1705832239224</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Adding more maps &amp; data">
+      <option name="closed" value="true" />
+      <created>1705852995065</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705852995065</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Adding the pdfs (maps)">
+      <option name="closed" value="true" />
+      <created>1705853022835</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705853022835</updated>
+    </task>
+    <task id="LOCAL-00008" summary="renaming the docs">
+      <option name="closed" value="true" />
+      <created>1705853200786</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1705853200786</updated>
+    </task>
+    <task id="LOCAL-00009" summary="renaming the docs">
+      <option name="closed" value="true" />
+      <created>1705918671317</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705918671317</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,22 +234,30 @@
     <MESSAGE value="adding the right datasets" />
     <MESSAGE value="Adding the Introduction &amp; authors to tex" />
     <MESSAGE value="Adding maps" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding maps" />
+    <MESSAGE value="Adding more maps &amp; data" />
+    <MESSAGE value="Adding the pdfs (maps)" />
+    <MESSAGE value="renaming the docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="renaming the docs" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm2.coverage" NAME="maps_KI_01_all data_osm2 Coverage Results" MODIFIED="1705825358335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
-    <SUITE FILE_PATH="coverage/db_project$exp_KI_01_matching_stations_with_routes.coverage" NAME="exp_KI_01_matching_stations_with_routes Coverage Results" MODIFIED="1705846483351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_fastest_route_points.coverage" NAME="maps_KI_01_fastest_route_points Coverage Results" MODIFIED="1705852901430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$exp_KI_01_matching_stations_with_routes.coverage" NAME="exp_KI_01_matching_stations_with_routes Coverage Results" MODIFIED="1705920190348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_weekdays.coverage" NAME="maps_KI_01_all_weekdays Coverage Results" MODIFIED="1705851020350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
-    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data.coverage" NAME="maps_KI_01_all_data Coverage Results" MODIFIED="1705849825264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data.coverage" NAME="maps_KI_01_all_data Coverage Results" MODIFIED="1705918873687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_weekend_weekday_osm.coverage" NAME="maps_KI_01_weekend_weekday_osm Coverage Results" MODIFIED="1705830029829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_weekend_weekday.coverage" NAME="maps_KI_01_weekend_weekday Coverage Results" MODIFIED="1705852424347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_02_weekend_weekday.coverage" NAME="maps_KI_02_weekend_weekday Coverage Results" MODIFIED="1705853057288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$Doctests_in_linalg.coverage" NAME="Doctests in linalg Coverage Results" MODIFIED="1705848412337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/usr/local/lib/python3.11/site-packages/numpy/linalg" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_fastest_vs__most_reliable_route_osm.coverage" NAME="maps_KI_01_all_fastest_vs._most_reliable_route_osm Coverage Results" MODIFIED="1705847773655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_03_all_weekdays.coverage" NAME="maps_KI_03_all_weekdays Coverage Results" MODIFIED="1705853084069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_Carto.coverage" NAME="maps_KI_01_all data_Carto Coverage Results" MODIFIED="1705830352229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
-    <SUITE FILE_PATH="coverage/db_project$deutsche_bahn_frankfurt.coverage" NAME="deutsche_bahn_frankfurt Coverage Results" MODIFIED="1705849601564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
+    <SUITE FILE_PATH="coverage/db_project$deutsche_bahn_frankfurt.coverage" NAME="deutsche_bahn_frankfurt Coverage Results" MODIFIED="1705919850675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm.coverage" NAME="maps_KI_01_all data_osm Coverage Results" MODIFIED="1705776857672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_weekdays_osm.coverage" NAME="maps_KI_01_all_weekdays_osm Coverage Results" MODIFIED="1705831722537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm3.coverage" NAME="maps_KI_01_all data_osm3 Coverage Results" MODIFIED="1705826375149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_04_fastest_route_points.coverage" NAME="maps_KI_04_fastest_route_points Coverage Results" MODIFIED="1705919708157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_04_fastest_route.coverage" NAME="maps_KI_04_fastest_route Coverage Results" MODIFIED="1705920024915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_fastest_route.coverage" NAME="maps_KI_01_fastest_route Coverage Results" MODIFIED="1705852558007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
   </component>
 </project>
