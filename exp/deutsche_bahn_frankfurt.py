@@ -17,8 +17,7 @@ import folium
 print("Current working directory: {0}".format(os.getcwd()))
 
 # Load the data
-gdf = gpd.read_file('./dat/strecken_polyline.shp')
-print(gdf.head())
+gdf = gpd.read_file('../dat/geo-strecke/strecken_polyline.shp')
 
 # Define coordinates for Stuttgart and Frankfurt am Main
 x_stuttgart, y_stuttgart = 9.18389001053732, 48.78312377049059
@@ -37,24 +36,24 @@ continuous_gdf['strecke_nr'] = continuous_gdf.index
 def find_route_connections(start_route, other_routes, threshold=50):
     connections = []
     start_route_num = start_route['strecke_nr']
-    for idx, other_route in other_routes.iterrows(): 
+    for idx, other_route in other_routes.iterrows():
         other_route_num = other_route['strecke_nr']
         # Check and handle LineString and MultiLineString for start route
         if isinstance(start_route['geometry'], LineString):
             start_geoms = [start_route['geometry']]
         elif isinstance(start_route['geometry'], MultiLineString):
             start_geoms = list(start_route['geometry'])
-        
+
         # Check and handle LineString and MultiLineString for other route
         if isinstance(other_route['geometry'], LineString):
             other_geoms = [other_route['geometry']]
         elif isinstance(other_route['geometry'], MultiLineString):
             other_geoms = list(other_route['geometry'])
-        
+
         # Check distances between all parts of start_geoms and other_geoms
-        for part_start in start_geoms: 
-            for part_other in other_geoms: 
-                if part_start.distance(part_other) < threshold: 
+        for part_start in start_geoms:
+            for part_other in other_geoms:
+                if part_start.distance(part_other) < threshold:
                     connections.append((start_route_num, other_route_num))
                     break
             if connections:
@@ -68,7 +67,7 @@ for idx, route in continuous_gdf.iterrows():
     # Add each route as a node
     route_num = route['strecke_nr']
     G.add_node(route_num, pos=route['geometry'].coords[:])
-    
+
     # Find connections to nearby routes
     connections = find_route_connections(route['geometry'], continuous_gdf, threshold=50)
     for conn in connections:
@@ -215,13 +214,13 @@ m = folium.Map(location=[stuttgart_point.y, stuttgart_point.x], zoom_start=12)
 for _, start_route in stuttgart_routes.iterrows():
     # Get the furthest endpoint of the starting route
     end_point = get_furthest_point(start_route['geometry'], stuttgart_point)
-    
+
     # Find the nearest route to this endpoint
     adjacent_route = find_nearest_route(end_point, continuous_gdf)
-    
+
     # Visualize the starting route
     add_line_to_map(start_route['geometry'], m, 'blue')
-    
+
     # Visualize the adjacent route
     if adjacent_route is not None:  # Ensure an adjacent route was found
         add_line_to_map(adjacent_route['geometry'], m, 'red')
@@ -243,7 +242,7 @@ for _, start_route in stuttgart_routes.iterrows():
 
     # Get the furthest endpoint of the starting route
     end_point = get_furthest_point(start_route['geometry'], stuttgart_point)
-    
+
     # Find the nearest route to this endpoint
     adjacent_route = find_nearest_route(end_point, continuous_gdf)
     adjacent_route_num = adjacent_route['strecke_nr'] if adjacent_route is not None else None
@@ -261,8 +260,8 @@ if overlapping_routes:
         print(route_num)
 else:
     print("No overlapping routes found.")
- 
-   
+
+
 "Third Adjacent Route"
 import geopandas as gpd
 from shapely.geometry import Point, LineString, MultiLineString
@@ -292,18 +291,18 @@ for _, start_route in stuttgart_routes.iterrows():
     current_route = start_route
     end_point = get_furthest_point(current_route['geometry'], stuttgart_point)
     adjacent_route = find_nearest_route(end_point, continuous_gdf)
-    
+
     # Visualize the starting route
     add_line_to_map(current_route['geometry'], m, 'blue')
-    
+
     if adjacent_route is not None and not end_point.within(stuttgart_buffer):
         # Visualize the first adjacent route
         add_line_to_map(adjacent_route['geometry'], m, 'red')
-        
+
         # Find the next adjacent route (adjacent_route_2)
         end_point_2 = get_furthest_point(adjacent_route['geometry'], end_point)
         adjacent_route_2 = find_nearest_route(end_point_2, continuous_gdf)
-        
+
         if adjacent_route_2 is not None and not end_point_2.within(stuttgart_buffer):
             # Visualize the second adjacent route
             add_line_to_map(adjacent_route_2['geometry'], m, 'purple')
@@ -327,7 +326,7 @@ def add_line_to_map(geometry, line_map, line_color, route_num):
         folium.PolyLine(coords, color=line_color).add_to(line_map)
         # Add a marker at the midpoint of the LineString with the route number
         mid_index = len(coords) // 2
-        folium.Marker(location=coords[mid_index], 
+        folium.Marker(location=coords[mid_index],
                       popup=str(route_num),
                       icon=folium.Icon(icon_color='white', color=line_color)).add_to(line_map)
     elif isinstance(geometry, MultiLineString):
@@ -336,7 +335,7 @@ def add_line_to_map(geometry, line_map, line_color, route_num):
             folium.PolyLine(coords, color=line_color).add_to(line_map)
         # Add a marker at the midpoint of the first LineString with the route number
         mid_index = len(coords) // 2
-        folium.Marker(location=coords[mid_index], 
+        folium.Marker(location=coords[mid_index],
                       popup=str(route_num),
                       icon=folium.Icon(icon_color='white', color=line_color)).add_to(line_map)
 
@@ -362,18 +361,18 @@ for _, start_route in stuttgart_routes.iterrows():
     current_route = start_route
     end_point = get_furthest_point(current_route['geometry'], stuttgart_point)
     adjacent_route = find_nearest_route(end_point, continuous_gdf)
-    
+
     # Visualize the starting route with route number
     add_line_to_map(current_route['geometry'], m, 'blue', start_route['strecke_nr'])
-    
+
     if adjacent_route is not None and not end_point.within(stuttgart_buffer):
         # Visualize the first adjacent route with route number
         add_line_to_map(adjacent_route['geometry'], m, 'red', adjacent_route['strecke_nr'])
-        
+
         # Find the next adjacent route (adjacent_route_2)
         end_point_2 = get_furthest_point(adjacent_route['geometry'], end_point)
         adjacent_route_2 = find_nearest_route(end_point_2, continuous_gdf)
-        
+
         if adjacent_route_2 is not None and not end_point_2.within(stuttgart_buffer):
             # Visualize the second adjacent route with route number
             add_line_to_map(adjacent_route_2['geometry'], m, 'purple', adjacent_route_2['strecke_nr'])
@@ -531,14 +530,14 @@ processed_routes = []
 def process_routes(route, route_geometry, target_point, continuous_gdf, map_obj, processed_list, depth=0, max_depth=4):
     if depth > max_depth:  # Limit the depth of recursion
         return
-    
+
     # Find the nearest routes to the endpoint of the current route
     endpoint = get_furthest_point(route_geometry, stuttgart_point)
     nearest_routes = find_nearby_routes(endpoint, continuous_gdf, route, max_routes=10)
-    
+
     # Filter down to the max 5 routes that lead nearest to the destination
     closest_routes = sorted(nearest_routes, key=lambda x: nearest_points(x[2], target_point)[0].distance(target_point))[:5]
-    
+
     # Iterate through these routes
     for strecke_nr, _, geometry in closest_routes:
         # Append route number to the list
@@ -686,10 +685,10 @@ def build_all_paths(current_route, current_path, target_point, continuous_gdf, a
 
     # Get the endpoint of the current route
     endpoint = get_furthest_point(continuous_gdf[continuous_gdf['strecke_nr'] == current_route].iloc[0]['geometry'], stuttgart_point)
-    
+
     # Find nearby routes
     nearby_routes = find_nearby_routes(endpoint, continuous_gdf, current_route, max_routes=10)
-    
+
     # Check if any of these routes lead directly to Frankfurt am Main
     for strecke_nr, _, geometry in nearby_routes:
         new_path = current_path + [strecke_nr]
@@ -760,12 +759,12 @@ for path_index, path in enumerate(all_paths):
     for route in path:
         # Filter stations for the current route
         stations_on_route = stations_with_routes_full[stations_with_routes_full['Route'] == route]
-        
+
         # Calculate the sum of average delays for each station
         for _, station in stations_on_route.iterrows():
             individual_delay = station['Minutes of delay'] / station['Number of train rides']
             total_delay += individual_delay
-    
+
     # Add the total delay of the path to the DataFrame
     path_delays_df.loc[path_index] = [' -> '.join(map(str, path)), total_delay]
 
