@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="renaming the docs">
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route_full.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route_points.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route_points.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route_points_full.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route_points_zoomed.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route_zoomed.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_06_reliable_vs_fastest.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_06_reliable_vs_fastest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_06_reliable_vs_fastest_zoomed.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/fig/path_delays.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_02_weekend_weekday.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_02_weekend_weekday.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route_full.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route_full.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route_zoomed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_04_fastest_route_zoomed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/path_delays.csv" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/path_delays.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Kim_visualizations" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -101,7 +86,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Kim__visualizations",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/kim/Desktop/QDS/1. Semester/Data Literacy/db_project/doc/fig",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
