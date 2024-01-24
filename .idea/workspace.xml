@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="renaming the docs">
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/path_delays.csv" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/path_delays.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dat/cleaned data/gdf_stations.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dat/cleaned data/gdf_stations.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dat/geo-strecke/strecken.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dat/geo-strecke/strecken.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route_points.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_05_most_reliable_route_points.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -57,46 +60,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python tests.Doctests in linalg.executor": "Run",
-    "Python.deutsche_bahn_frankfurt.executor": "Run",
-    "Python.exp_KI_01_matching_stations_with_routes.executor": "Run",
-    "Python.maps_KI_01_all data.executor": "Run",
-    "Python.maps_KI_01_all data_Carto.executor": "Run",
-    "Python.maps_KI_01_all data_osm.executor": "Run",
-    "Python.maps_KI_01_all data_osm2.executor": "Run",
-    "Python.maps_KI_01_all data_osm3.executor": "Run",
-    "Python.maps_KI_01_all_data.executor": "Run",
-    "Python.maps_KI_01_all_fastest_vs._most_reliable_route_osm.executor": "Run",
-    "Python.maps_KI_01_all_weekdays.executor": "Run",
-    "Python.maps_KI_01_all_weekdays_osm.executor": "Run",
-    "Python.maps_KI_01_fastest_route.executor": "Run",
-    "Python.maps_KI_01_fastest_route_points.executor": "Run",
-    "Python.maps_KI_01_weekend_weekday.executor": "Run",
-    "Python.maps_KI_01_weekend_weekday_osm.executor": "Run",
-    "Python.maps_KI_02_weekend_weekday.executor": "Run",
-    "Python.maps_KI_03_all_weekdays.executor": "Run",
-    "Python.maps_KI_04_fastest_route.executor": "Run",
-    "Python.maps_KI_04_fastest_route_points.executor": "Run",
-    "Python.maps_KI_05_most_reliable_route.executor": "Run",
-    "Python.maps_KI_05_most_reliable_route_points.executor": "Run",
-    "Python.maps_KI_06_reliable_vs_fastest.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/kim/Desktop/QDS/1. Semester/Data Literacy/db_project/doc/fig",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python tests.Doctests in linalg.executor&quot;: &quot;Run&quot;,
+    &quot;Python.deutsche_bahn_frankfurt.executor&quot;: &quot;Run&quot;,
+    &quot;Python.exp_KI_01_matching_stations_with_routes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all data_Carto.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all data_osm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all data_osm2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all data_osm3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all_fastest_vs._most_reliable_route_osm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all_weekdays.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_all_weekdays_osm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_fastest_route.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_fastest_route_points.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_weekend_weekday.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_01_weekend_weekday_osm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_02_weekend_weekday.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_03_all_weekdays.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_04_fastest_route.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_04_fastest_route_points.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_05_most_reliable_route.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_05_most_reliable_route_points.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maps_KI_06_reliable_vs_fastest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/kim/Desktop/QDS/1. Semester/Data Literacy/db_project/doc/fig&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/doc/fig" />
@@ -140,6 +143,7 @@
       <workItem from="1705844467375" duration="8696000" />
       <workItem from="1705918579366" duration="1634000" />
       <workItem from="1706033662665" duration="1895000" />
+      <workItem from="1706087942222" duration="334000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <option name="closed" value="true" />

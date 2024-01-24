@@ -115,7 +115,7 @@ west, south, east, north = bounds
 im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
 
 # Plot the map with the aspect ratio fixed
-cx.plot_map(im2, bbox, ax = ax, title = "Fastest route")
+cx.plot_map(im2, bbox, ax = ax, title = "Most reliable route")
 
 # Add labels and legend
 ax.legend(loc = "upper left", frameon = False)
@@ -157,7 +157,7 @@ west, south, east, north = bounds
 im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
 
 # Plot the map with the aspect ratio fixed
-cx.plot_map(im2, bbox, ax = ax, title = "Fastest route")
+cx.plot_map(im2, bbox, ax = ax, title = "Most reliable route")
 
 # Add labels and legend
 ax.legend(loc = "upper right", frameon = False)
@@ -206,8 +206,8 @@ west, south, east, north = bounds
 im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
 
 # Plot the map with the aspect ratio fixed
-cx.plot_map(im2, bbox, ax = ax1, title = "Fastest route")
-cx.plot_map(im2, bbox, ax = ax2, title = "Fastest route (zoomed)")
+cx.plot_map(im2, bbox, ax = ax1, title = "Most reliable route")
+cx.plot_map(im2, bbox, ax = ax2, title = "Most reliable route (zoomed)")
 
 # Add labels and legend
 ax1.legend(loc = "upper left", frameon = False)
