@@ -5,14 +5,14 @@ import matplotlib.pyplot as plt
 import contextily as cx
 import rasterio
 from tueplots import bundles
+from matplotlib.backends.backend_pdf import PdfPages
 
 
 
 
 #### 00 get cleaned data
-# from ipynb.fs.full.exploration_cleaning import get_data
-# data = get_data(which = "mean")
-data = pd.read_csv("data_mean.csv", sep = ",")
+from ipynb.fs.full.exploration_cleaning import get_data
+data = get_data(which = "mean")
 
 
 # create geometry column with a point object of the coordinates
@@ -31,7 +31,7 @@ germany = cx.Place("Deutschland", source = cx.providers.OpenStreetMap.Mapnik)
 
 
 # Get the shape of Germany
-with rasterio.open("tifs/germany_osm.tif") as r:
+with rasterio.open("../doc/fig/tifs/germany_osm.tif") as r:
     west, south, east, north = tuple(r.bounds)
     germany_crs = r.crs
 bb_poly = box(west, south, east, north)
@@ -55,7 +55,7 @@ fig, ax = plt.subplots(figsize = (4, 4))
 gdf_germany.plot(ax = ax, markersize = 0, color = "k")
 
 # Add the base map
-cx.add_basemap(ax = ax, crs = gdf_germany.crs, source = "tifs/germany_osm.tif", alpha = 0.7)
+cx.add_basemap(ax = ax, crs = gdf_germany.crs, source = "../doc/fig/tifs/germany_osm.tif", alpha = 0.7)
 
 # Get the bounds of the geodataframe, converted to the same CRS as the contextily basemap
 bounds = gdf_germany.total_bounds
@@ -80,4 +80,7 @@ ax.legend(loc = "upper left", frameon = False)
 
 
 #### 03 Save as PDF
-plt.savefig("maps_KI_01_all_data.pdf", bbox_inches = 'tight')
+pdf_filename = "../doc/fig/maps_KI_01_all_data.pdf"
+with PdfPages(pdf_filename) as pdf:
+    pdf.savefig(fig, bbox_inches = "tight")
+    print(f"Plot saved as {pdf_filename}")

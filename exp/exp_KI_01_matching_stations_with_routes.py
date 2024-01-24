@@ -5,7 +5,7 @@ from shapely.geometry import Point, LineString
 
 #### 00 read data
 data_routes = gpd.read_file("../dat/geo-strecke/strecken_polyline.shp")
-data_mean = pd.read_csv("../doc/fig/data_mean.csv", sep = ";")
+data_mean = pd.read_csv("../doc/fig/trash/data_mean.csv", sep =";")
 
 # Create GeoDataFrame for routes
 gdf_routes = gpd.GeoDataFrame(data_routes, geometry = 'geometry')
