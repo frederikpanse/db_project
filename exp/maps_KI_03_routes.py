@@ -23,7 +23,7 @@ path_delays = get_paths()
 gdf_stations = pd.read_csv("../dat/stations_with_nearest_routes.csv", sep = ",")
 data_routes = gpd.read_file("../dat/geo-strecke/strecken_polyline.shp")
 
-
+print("There are {} unique routes we found.".format(len(path_delays)))
 
 
 #### 01 Routes
@@ -771,7 +771,7 @@ gdf_germany_fast = gdf_germany_fast.to_crs(epsg = 3395)
 plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, usetex = False))
 
 # Plot the data
-fig, ax = plt.subplots(figsize = (4, 4))
+fig, ax = plt.subplots(figsize = (3, 3))
 
 
 # connect both dataframes to get min / max values of both
@@ -788,9 +788,11 @@ sm.set_array([])
 
 # Plot the points, create a colorbar for the points
 gdf_germany_rel["color"] = gdf_germany_rel["Minutes of delay"].apply(lambda x: sm.to_rgba(np.log1p(x)))
-gdf_germany_rel[gdf_germany_rel["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_rel.loc[gdf_germany_rel["Minutes of delay"] >= 0, "color"], markersize = 12, marker = "o", label = "Most reliable route")
+gdf_germany_rel[gdf_germany_rel["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_rel.loc[gdf_germany_rel["Minutes of delay"] >= 0, "color"],
+                                                               markersize = 12, marker = "o", label = "Most reliable route, \nmean delay = {}".format(round(gdf_stations_rel["Minutes of delay"].mean(), 2)))
 gdf_germany_fast["color"] = gdf_germany_fast["Minutes of delay"].apply(lambda x: sm.to_rgba(np.log1p(x)))
-gdf_germany_fast[gdf_germany_fast["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_fast.loc[gdf_germany_fast["Minutes of delay"] >= 0, "color"], markersize = 12, marker = "v", label = "Fastest route")
+gdf_germany_fast[gdf_germany_fast["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_fast.loc[gdf_germany_fast["Minutes of delay"] >= 0, "color"],
+                                                                 markersize = 12, marker = "v", label = "Fastest route, \nmean delay = {}".format(round(gdf_stations_fast["Minutes of delay"].mean(), 2)))
 
 
 # Add the base map
@@ -805,7 +807,7 @@ west, south, east, north = bounds
 im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
 
 # Plot the map with the aspect ratio fixed
-cx.plot_map(im2, bbox, ax = ax, title = "Most reliable route vs. fastest route")
+cx.plot_map(im2, bbox, ax = ax) # title = "Most reliable route vs. fastest route"
 
 # Add labels and legend
 ax.legend(loc = "lower left", frameon = False)
@@ -815,7 +817,8 @@ cbar = plt.colorbar(sm, ax = ax, label = "Minutes of delay (log scale)", orienta
 
 # Convert log-scaled ticks back to original scale for display
 cbar_ticks_original_scale = np.expm1(cbar.get_ticks())
-cbar.set_ticklabels([f"$e^{{{int(tick)}}} = {original_scale:.2f}$ minutes" for tick, original_scale in zip(cbar.get_ticks(), cbar_ticks_original_scale)])
+rounded_ticks = [round(tick) if tick % 1 else int(tick) for tick in cbar_ticks_original_scale]
+cbar.set_ticklabels([f"{int(original_scale)} min" for original_scale in rounded_ticks])
 cbar.set_label("Minutes of delay (log scaled)")
 
 # Remove border color
@@ -835,7 +838,7 @@ with PdfPages(pdf_filename) as pdf:
 plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, usetex = False))
 
 # Plot the data
-fig, ax = plt.subplots(figsize = (4, 4))
+fig, ax = plt.subplots(figsize = (3, 3))
 
 
 # connect both dataframes to get min / max values of both
@@ -852,9 +855,11 @@ sm.set_array([])
 
 # Plot the points, create a colorbar for the points
 gdf_germany_rel["color"] = gdf_germany_rel["Minutes of delay"].apply(lambda x: sm.to_rgba(np.log1p(x)))
-gdf_germany_rel[gdf_germany_rel["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_rel.loc[gdf_germany_rel["Minutes of delay"] >= 0, "color"], markersize = 12, marker = "o", label = "Most reliable route")
+gdf_germany_rel[gdf_germany_rel["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_rel.loc[gdf_germany_rel["Minutes of delay"] >= 0, "color"],
+                                                               markersize = 12, marker = "o", label = "Most reliable route, \nmean delay = {}".format(round(gdf_stations_rel["Minutes of delay"].mean(), 2)))
 gdf_germany_fast["color"] = gdf_germany_fast["Minutes of delay"].apply(lambda x: sm.to_rgba(np.log1p(x)))
-gdf_germany_fast[gdf_germany_fast["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_fast.loc[gdf_germany_fast["Minutes of delay"] >= 0, "color"], markersize = 12, marker = "v", label = "Fastest route")
+gdf_germany_fast[gdf_germany_fast["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_fast.loc[gdf_germany_fast["Minutes of delay"] >= 0, "color"],
+                                                                 markersize = 12, marker = "v", label = "Fastest route, \nmean delay = {}".format(round(gdf_stations_fast["Minutes of delay"].mean(), 2)))
 
 
 # Add the base map
@@ -869,7 +874,7 @@ west, south, east, north = bounds
 im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
 
 # Plot the map with the aspect ratio fixed
-cx.plot_map(im2, bbox, ax = ax, title = "Most reliable route vs. fastest route")
+cx.plot_map(im2, bbox, ax = ax) # title = "Most reliable route vs. fastest route"
 
 # Add labels and legend
 ax.legend(loc = "lower left", frameon = False)
@@ -879,7 +884,8 @@ cbar = plt.colorbar(sm, ax = ax, label = "Minutes of delay (log scale)", orienta
 
 # Convert log-scaled ticks back to original scale for display
 cbar_ticks_original_scale = np.expm1(cbar.get_ticks())
-cbar.set_ticklabels([f"$e^{{{int(tick)}}} = {original_scale:.2f}$ minutes" for tick, original_scale in zip(cbar.get_ticks(), cbar_ticks_original_scale)])
+rounded_ticks = [round(tick) if tick % 1 else int(tick) for tick in cbar_ticks_original_scale]
+cbar.set_ticklabels([f"{int(original_scale)} min" for original_scale in rounded_ticks])
 cbar.set_label("Minutes of delay (log scaled)")
 
 # Remove border color

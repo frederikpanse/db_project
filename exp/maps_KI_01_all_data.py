@@ -68,7 +68,7 @@ west, south, east, north = bounds
 im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
 
 # Plot the map with the aspect ratio fixed
-cx.plot_map(im2, bbox, ax = ax, title = "Mean delay of trains in 2016 in Germany")
+cx.plot_map(im2, bbox, ax = ax) # title = "Mean delay of trains in 2016 in Germany"
 
 # Add condition for the markers
 # green means no delay (less than 6 minutes), red means delay (more or equal to 6 minutes)
@@ -96,7 +96,7 @@ with PdfPages(pdf_filename) as pdf:
 plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, usetex = False))
 
 # Plot the data
-fig, ax = plt.subplots(figsize = (4, 4))
+fig, ax = plt.subplots(figsize = (4, 3))
 gdf_germany.plot(ax = ax, markersize = 0, color = "k")
 
 
@@ -125,14 +125,15 @@ west, south, east, north = bounds
 im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
 
 # Plot the map with the aspect ratio fixed
-cx.plot_map(im2, bbox, ax = ax, title = "Mean delay of trains in 2016 in Germany")
+cx.plot_map(im2, bbox, ax = ax) # title = "Mean delay of trains in 2016 in Germany"
 
 # Add colorbar for the points
 cbar = plt.colorbar(sm, ax = ax, label = "Minutes of delay (log scale)", orientation = "vertical", pad = 0.02, ticks = [1, 2, 3, 4, 5, 6, 7])
 
 # Convert log-scaled ticks back to original scale for display
 cbar_ticks_original_scale = np.expm1(cbar.get_ticks())
-cbar.set_ticklabels([f"$e^{{{int(tick)}}} = {original_scale:.2f}$ minutes" for tick, original_scale in zip(cbar.get_ticks(), cbar_ticks_original_scale)])
+rounded_ticks = [round(tick) if tick % 1 else int(tick) for tick in cbar_ticks_original_scale]
+cbar.set_ticklabels([f"{int(original_scale)} min" for original_scale in rounded_ticks])
 cbar.set_label("Minutes of delay (log scaled)")
 
 # Remove border color
@@ -146,3 +147,6 @@ pdf_filename = "../doc/fig/maps_KI_01_all_data_cmap.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")
+
+
+print("The mean delay of all Germany in 2016 was", round(gdf_germany["Minutes of delay"].mean(), 2), "minutes.")
