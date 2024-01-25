@@ -6,6 +6,9 @@ import contextily as cx
 import rasterio
 from tueplots import bundles
 from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.colors import Normalize
+from matplotlib.cm import ScalarMappable
+import numpy as np
 
 
 
@@ -81,6 +84,65 @@ ax.legend(loc = "upper left", frameon = False)
 
 #### 03 Save as PDF
 pdf_filename = "../doc/fig/maps_KI_01_all_data.pdf"
+with PdfPages(pdf_filename) as pdf:
+    pdf.savefig(fig, bbox_inches = "tight")
+    print(f"Plot saved as {pdf_filename}")
+
+
+
+#### 02 plot
+
+# set plotting stylesheet
+plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, usetex = False))
+
+# Plot the data
+fig, ax = plt.subplots(figsize = (4, 4))
+gdf_germany.plot(ax = ax, markersize = 0, color = "k")
+
+
+# Apply log scaling to min & max values
+log_min_delay = np.log1p(gdf_germany["Minutes of delay"].min())
+log_max_delay = np.log1p(gdf_germany["Minutes of delay"].max())
+
+# Create ScalarMappable with common normalization
+norm = Normalize(vmin = log_min_delay, vmax = log_max_delay)
+sm = ScalarMappable(norm = norm, cmap = "coolwarm")
+sm.set_array([])
+
+# Plot the points, create a colorbar for the points
+gdf_germany["color"] = gdf_germany["Minutes of delay"].apply(lambda x: sm.to_rgba(np.log1p(x)))
+gdf_germany[gdf_germany["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany.loc[gdf_germany["Minutes of delay"] >= 0, "color"], markersize = 1, marker = "o")
+
+
+# Add the base map
+cx.add_basemap(ax = ax, crs = gdf_germany.crs, source = "../doc/fig/tifs/germany_Carto.tif", alpha = 1)
+
+# Get the bounds of the geodataframe, converted to the same CRS as the contextily basemap
+bounds = gdf_germany.total_bounds
+west, south, east, north = bounds
+
+# Get base map image for the bounds with the correct zoom level. 'll' signifies long-lat bounds
+im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
+
+# Plot the map with the aspect ratio fixed
+cx.plot_map(im2, bbox, ax = ax, title = "Mean delay of trains in 2016 in Germany")
+
+# Add colorbar for the points
+cbar = plt.colorbar(sm, ax = ax, label = "Minutes of delay (log scale)", orientation = "vertical", pad = 0.02, ticks = [1, 2, 3, 4, 5, 6, 7])
+
+# Convert log-scaled ticks back to original scale for display
+cbar_ticks_original_scale = np.expm1(cbar.get_ticks())
+cbar.set_ticklabels([f"$e^{{{int(tick)}}} = {original_scale:.2f}$ minutes" for tick, original_scale in zip(cbar.get_ticks(), cbar_ticks_original_scale)])
+cbar.set_label("Minutes of delay (log scaled)")
+
+# Remove border color
+cbar.outline.set_edgecolor("none")
+
+
+
+
+#### 03 Save as PDF
+pdf_filename = "../doc/fig/maps_KI_01_all_data_cmap.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")
