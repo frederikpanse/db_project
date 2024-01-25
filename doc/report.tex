@@ -179,11 +179,81 @@ Explain here, in one sentence per person, what each group member contributed. Fo
 
 \section*{Notes} 
 
-Your entire report has a \textbf{hard page limit of 4 pages} excluding references. (I.e. any pages beyond page 4 must only contain references). Appendices are \emph{not} possible. But you can put additional material, like interactive visualizations or videos, on a githunb repo (use \href{https://github.com/pnkraemer/tueplots}{links} in your pdf to refer to them). Each report has to contain \textbf{at least three plots or visualizations}, and \textbf{cite at least two references}. More details about how to prepare the report, inclucing how to produce plots, cite correctly, and how to ideally structure your github repo, will be discussed in the lecture, where a rubric for the evaluation will also be provided.
+\section{Analysis of Factors Influencing Delays}
 
+In this section, we will provide comprehensive information on factors influencing train delays by examining the results of visualizations and random forest modeling together. We aim to present a detailed analysis of the factors contributing to train delays.
+
+The dataset used in this study is characterized by a significant imbalance, with a large proportion of non-delayed data. To tackle this, downsampling was applied, focusing on the count of delayed instances. Correlation calculations were then carried out using train stations as reference points, and only data with correlations surpassing a specific threshold were retained. The accuracy of the random forest model is 0.8229.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{fig/plot_JH_feature_importance.pdf}
+    \caption{Feature Importance of Random Forest}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{{Centrality Measures}}
+
+After calculating the correlation coefficients related to the delay times between stations, we created edges between two stations if the correlation coefficient was 0.4 or higher. The importance of variables in terms of between centrality was found to be very high, despite being a virtual relationship based on the correlation patterns of delay, rather than a physical connection. 
+
+
+The betweenness centrality ($C_B(v)$) of a node $v$ in a graph is calculated as the sum of the fraction of all pairs of nodes $(s, t)$, where $s \neq v \neq t$, for which node $v$ lies on the shortest path between $s$ and $t$. The formula for betweenness centrality is given by:
+
+\begin{equation}
+C_B(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}
+\end{equation}
+
+Here, $\sigma_{st}$ represents the total number of shortest paths from node $s$ to node $t$, and $\sigma_{st}(v)$ represents the number of those paths that pass through node $v$.
+
+This measure provides an indication of how central a node is in terms of facilitating communication between other nodes in the network.
+
+The second centrality measure is closeness centrality. The closeness centrality ($C_C(v)$) of a node $v$ in a graph is a measure of how close it is to all other nodes in the network. It is defined as the reciprocal of the average shortest path distance from node $v$ to all other nodes. According to Ulrik [3], the formula for closeness centrality is given by:
+
+\begin{equation}
+C_C(v) = \frac{1}{\sum_{u} d(v, u)}
+\end{equation}
+
+Here, $d(v, u)$ represents the shortest path distance from node $v$ to node $u$, and the sum is taken over all other nodes in the network.
+
+Closeness centrality reflects how efficiently a node can communicate with other nodes in the network, emphasizing nodes that are closer to all other nodes.
+
+
+
+
+As argued by Freeman [2], betweenness centrality is one of the most important indicators for a vertex or node because it refers to the extent of the vertex that is structurally central for standing in between others and the vertex can therefore facilitate or impede the transmission of information/goods [1]
+
+betweenness centrality can serve as a very useful tool for rail operators to plan their maintenance schedule because the more ‘central’ stations experience much more stress, resulting in high loadings on its facilities [1]
+
+\subsection{{characteristics of station}}
+
+We considered three factors related to train stations, listed in order of variable importance: distance from the border, the ratio of the given date's train rides to the median of the usual train rides (Relative number of train rides), and the number of train rides. Within the choropleth map (Figure 1 
+), it was evident that significant delays occurred near the border. Additionally, the Relative number of train rides measures the likelihood of delays if the train station exceeds its capacity to handle train operations.
+
+\subsection{{Factors related to dates}}
+
+We analyzed the delays based on factors related to dates, including Day, Month, Dayofweek, and Holidays.
+??maybe visualization??
+
+\subsection{{Conclusions}}
+
+It is necessary to consider factors beyond simple travel time, such as the operational schedules of other trains and the centrality of specific stations depending on date train system. Additionally, DB operators should consider these factors when deciding train routes and schedules. Centrality metrics and capacity of train stations can be applied to train systems. Future research should explore the interconnectivity between shortest path under the assumption of no delays and probability of delay. 
+
+
+
+
+\section{Limitations}
+
+
+The delays were computed on a daily average basis, potentially leading to varying results based on different time intervals. Furthermore, our analysis exclusively focused on delay times. A more comprehensive understanding could be achieved by constructing a model that considers both travel time and the probability of delays. The data from the database is incomplete, incorporating only about 35.31\% of the available records for Random Forest model development. Specifically, we considered data from stations with records available for at least 288 days, accounting for over 90\% of this period. Stations with no reported delays throughout the entire duration were excluded from the dataset. 
 
 \bibliography{bibliography}
+1. To, W.M. Centrality of an Urban Rail System. \textit{Urban Rail Transit} \textbf{1}, 249–256 (2015).
+
+2. Freeman LC (1977) A set of measures of centrality based on betweenness. Sociometry 40(1):35–41.
+
+3. Ulrik Brandes: On Variants of Shortest-Path Betweenness Centrality and their Generic Computation. Social Networks 30(2):136-145, 2008.
 \bibliographystyle{icml2023}
+
 
 \end{document}
 
