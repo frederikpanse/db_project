@@ -829,6 +829,69 @@ with PdfPages(pdf_filename) as pdf:
 
 
 
+#### 03 plot (zoomed) CARTO
+
+# set plotting stylesheet
+plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, usetex = False))
+
+# Plot the data
+fig, ax = plt.subplots(figsize = (4, 4))
+
+
+# connect both dataframes to get min / max values of both
+gdf_germany_both = pd.concat([gdf_germany_rel, gdf_germany_fast])
+
+# Apply log scaling to min & max values
+log_min_delay = np.log1p(gdf_germany_both["Minutes of delay"].min())
+log_max_delay = np.log1p(gdf_germany_both["Minutes of delay"].max())
+
+# Create ScalarMappable with common normalization
+norm = Normalize(vmin = log_min_delay, vmax = log_max_delay)
+sm = ScalarMappable(norm = norm, cmap = "coolwarm")
+sm.set_array([])
+
+# Plot the points, create a colorbar for the points
+gdf_germany_rel["color"] = gdf_germany_rel["Minutes of delay"].apply(lambda x: sm.to_rgba(np.log1p(x)))
+gdf_germany_rel[gdf_germany_rel["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_rel.loc[gdf_germany_rel["Minutes of delay"] >= 0, "color"], markersize = 12, marker = "o", label = "Most reliable route")
+gdf_germany_fast["color"] = gdf_germany_fast["Minutes of delay"].apply(lambda x: sm.to_rgba(np.log1p(x)))
+gdf_germany_fast[gdf_germany_fast["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany_fast.loc[gdf_germany_fast["Minutes of delay"] >= 0, "color"], markersize = 12, marker = "v", label = "Fastest route")
+
+
+# Add the base map
+cx.add_basemap(ax = ax, crs = gdf_germany_rel.crs, source = "../doc/fig/tifs/germany_Carto.tif", alpha = 1, reset_extent = True)
+
+# Get the bounds of the geodataframe, converted to the same CRS as the contextily basemap
+bounds = gdf_germany_rel.total_bounds
+west, south, east, north = bounds
+
+
+# Get base map image for the bounds with the correct zoom level. 'll' signifies long-lat bounds
+im2, bbox = cx.bounds2img(west, south, east, north, ll = True, zoom = germany.zoom)
+
+# Plot the map with the aspect ratio fixed
+cx.plot_map(im2, bbox, ax = ax, title = "Most reliable route vs. fastest route")
+
+# Add labels and legend
+ax.legend(loc = "lower left", frameon = False)
+
+# Add colorbar for the points
+cbar = plt.colorbar(sm, ax = ax, label = "Minutes of delay (log scale)", orientation = "vertical", pad = 0.02, ticks = [1, 2, 3, 4, 5])
+
+# Convert log-scaled ticks back to original scale for display
+cbar_ticks_original_scale = np.expm1(cbar.get_ticks())
+cbar.set_ticklabels([f"$e^{{{int(tick)}}} = {original_scale:.2f}$ minutes" for tick, original_scale in zip(cbar.get_ticks(), cbar_ticks_original_scale)])
+cbar.set_label("Minutes of delay (log scaled)")
+
+# Remove border color
+cbar.outline.set_edgecolor("none")
+
+# Save as PDF
+pdf_filename = "../doc/fig/maps_KI_03_reliable_vs_fastest_zoomed_Carto.pdf"
+with PdfPages(pdf_filename) as pdf:
+    pdf.savefig(fig, bbox_inches = "tight")
+    print(f"Plot saved as {pdf_filename}")
+
+
 #### 06 mean delay of most reliable route
 
 # get the mean delay of the fastest route
