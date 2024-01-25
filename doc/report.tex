@@ -128,7 +128,7 @@
 \printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
-Put your abstract here. Abstracts typically start with a sentence motivating why the subject is interesting. Then mention the data, methodology or methods you are working with, and describe results. 
+People determine their train schedules under the assumption of no train delays. However, In 2023, when the Deutsche Bahn (DB) announced that its punctuality quota fell to 65,2 percent in 2022, this assumption becomes problematic. In this paper, alternative schedule is proposed that minimizes delays. Additionally, we analyze factors influencing train delays and support our claim by visualizing them and modeling a random forest. We are planning to use data provided by the DB in 2016 and the corresponding directory of operating sites. We came across this dataset on recorded train schedules and delays in 2016 on DB’s website as some of our friends and other members of the community in Tubingen are affected by the train delays almost on a day-to-day basis. 
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -165,24 +165,65 @@ In this section, describe \emph{what you did}. Roughly speaking, explain what da
 % \vskip -0.2in
 % \end{figure}
 
-\section{Results}\label{sec:results}
+\section{Analysis of Factors Influencing Delays}
 
-In this section outline your results. At this point, you are just stating the outcome of your analysis. You can highlight important aspects (``we observe a significantly higher value of $x$ over $y$''), but leave interpretation and opinion to the next section. This section absoultely \emph{has} to include at least two figures.
+In this section, we will provide comprehensive information on factors influencing train delays by examining the results of visualizations and random forest modeling together. We aim to present a detailed analysis of the factors contributing to train delays.
 
-\section{Discussion \& Conclusion}\label{sec:conclusion}
+The dataset used in this study is characterized by a significant imbalance, with a large proportion of non-delayed data. To tackle this, downsampling was applied, focusing on the count of delayed instances. Correlation calculations were then carried out using train stations as reference points, and only data with correlations surpassing a specific threshold were retained. The accuracy of the random forest model is 0.8229.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{feature_importance.pdf}
+    \caption{Feature Importance of Random Forest}
+    \label{fig:enter-label}
+\end{figure}
 
-Use this section to briefly summarize the entire text. Highlight limitations and problems, but also make clear statements where they are possible and supported by the analysis. 
+\subsection{{Centrality Measures}}
 
-\section*{Contribution Statement}
+After calculating the correlation coefficients related to the delay times between stations, we created edges between two stations if the correlation coefficient was 0.4 or higher. The importance of variables in terms of between centrality was found to be very high, despite being a virtual relationship based on the correlation patterns of delay, rather than a physical connection. 
 
-Explain here, in one sentence per person, what each group member contributed. For example, you could write: Max Mustermann collected and prepared data. Gabi Musterfrau and John Doe performed the data analysis. Jane Doe produced visualizations. All authors will jointly wrote the text of the report. Note that you, as a group, a collectively responsible for the report. Your contributions should be roughly equal in amount and difficulty.
+식 고쳐쓰기 
+Betweenness Centrality is written as 
 
-\section*{Notes} 
+C_B(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}
 
-Your entire report has a \textbf{hard page limit of 4 pages} excluding references. (I.e. any pages beyond page 4 must only contain references). Appendices are \emph{not} possible. But you can put additional material, like interactive visualizations or videos, on a githunb repo (use \href{https://github.com/pnkraemer/tueplots}{links} in your pdf to refer to them). Each report has to contain \textbf{at least three plots or visualizations}, and \textbf{cite at least two references}. More details about how to prepare the report, inclucing how to produce plots, cite correctly, and how to ideally structure your github repo, will be discussed in the lecture, where a rubric for the evaluation will also be provided.
+The second centrality measure is closeness centrality. 
 
+Closeness Centrality  can be written as 
+
+C_C(v) = \frac{1}{\sum_{u} d(v, u)}
+
+
+
+As argued by Freeman [2], betweenness centrality is one of the most important indicators for a vertex or node because it refers to the extent of the vertex that is structurally central for standing in between others and the vertex can therefore facilitate or impede the transmission of information/goods [1]
+
+betweenness centrality can serve as a very useful tool for rail operators to plan their maintenance schedule because the more ‘central’ stations experience much more stress, resulting in high loadings on its facilities [1]
+
+\subsection{{characteristics of station}}
+
+We considered three factors related to train stations, listed in order of variable importance: distance from the border, the ratio of the given date's train rides to the median of the usual train rides (Relative number of train rides), and the number of train rides. Within the choropleth map, it was evident that significant delays occurred near the border. Additionally, the Relative number of train rides measures the likelihood of delays if the train station exceeds its capacity to handle train operations.
+
+\subsection{{Factors related to dates}}
+
+We analyzed the delays based on factors related to dates, including Day, Month, Dayofweek, and Holidays.
+??maybe visualization??
+
+\subsection{{Conclusions}}
+
+It is necessary to consider factors beyond simple travel time, such as the operational schedules of other trains and the centrality of specific stations when identifying minimum delay segments in the railway system. Additionally, railway operators should employ this tool when assessing the risks associated with the accidental or intentional disruption of a particular station. Centrality metrics can be applied to intercity railway systems, including high-speed rail networks. However, caution is advised when connecting high-speed rail networks to urban railway networks due to significant differences in capacity and frequency. Future research should explore the interconnectivity between diverse railway networks.
+
+\section{??maybe maps comparing Google and Ours..??}
+
+
+
+\section{Limitations}
+
+
+The delays were computed on a daily average basis, potentially leading to varying results based on different time intervals. Furthermore, our analysis exclusively focused on delay times. A more comprehensive understanding could be achieved by constructing a model that considers both travel time and the probability of delays. The data from the database is incomplete, incorporating only about 35.31\% of the available records for Random Forest model development. Specifically, we considered data from stations with records available for at least 288 days, accounting for over 90\% of this period. Stations with no reported delays throughout the entire duration were excluded from the dataset. 
 
 \bibliography{bibliography}
+1. To, W.M. Centrality of an Urban Rail System. \textit{Urban Rail Transit} \textbf{1}, 249–256 (2015).
+
+2. Freeman LC (1977) A set of measures of centrality based on betweenness. Sociometry 40(1):35–41
 \bibliographystyle{icml2023}
 
 \end{document}
