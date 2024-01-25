@@ -128,30 +128,44 @@
 \printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
-People determine their train schedules under the assumption of no train delays. However, In 2023, when the Deutsche Bahn (DB) announced that its punctuality quota fell to 65,2 percent in 2022, this assumption becomes problematic. In this paper, alternative schedule is proposed that minimizes delays. Additionally, we analyze factors influencing train delays and support our claim by visualizing them and modeling a random forest. We are planning to use data provided by the DB in 2016 and the corresponding directory of operating sites. We came across this dataset on recorded train schedules and delays in 2016 on DB’s website as some of our friends and other members of the community in Tubingen are affected by the train delays almost on a day-to-day basis. 
+People determine their train schedules under the assumption of no train delays. However, in 2023, when the Deutsche Bahn (DB) announced that its punctuality quote fell to 65.2 percent in 2022, this assumption becomes problematic. In this paper, we conduct route optimization to find the most reliable route going from Stuttgart to Frankfurt (Main). Additionally, we analyze factors influencing train delays and support our claim by visualizing them and modeling a random forest. We found that the optimal route has less than half of the mean delay of the fastest route that Deutsche Bahn offers. The most influencing factors of train delay were the route's distance to the border of Germany, the (relative) number of train rides and the between centrality.
 
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
 If a group of Tübinger students would want to take a trip to Frankfurt (Main) by train, there are many possible routes to take. Would they be able to decide beforehand on the most reliable route and the best time to go?
 
-When traveling from one place to another by Deutsche Bahn, passengers often can't rely on arriving at their destination at the scheduled time. Even though real-time train delay is provided by the Deutsche Bahn, informing travelers about current delays, passengers don't have any information about the delay beforehand. Previous studies often focused on predicting train delay \cite{predtraindelay}. Our goal is to identify the most reliable train route going from Stuttgart to Frankfurt (Main).
+When traveling from one place to another by Deutsche Bahn, passengers often can't rely on arriving at their destination at the scheduled time. Even though real-time train delay is provided by the Deutsche Bahn, informing travelers about current delays, passengers don't have any information about the delay beforehand. Deutsche Bahn is able to identify the fastest route, without considering the mean delay of this route (e.g., \href{https://www.bahn.de/buchung/intern/start}{travel information}). Previous studies often focused on predicting train delay \cite{predtraindelay, largetrainnet, MLtraindel}. Our goal is to identify the most reliable train route going from Stuttgart to Frankfurt (Main).
 
-We are working with \href{https://data.deutschebahn.com/dataset/ist-verkehrsdaten-der-db-cargo-auf-bst8-ebene.html}{train delay data} provided by the Deutsche Bahn, that consists of stations and stops that measured the number of trains and minutes of delay of all trains passing by in 2016. We are also using the corresponding \href{https://data.deutschebahn.com/dataset/betriebsstellen-gueterverkehr.html}{directory of operating sites} and \href{https://data.deutschebahn.com/dataset/betriebsstellen-gueterverkehr.html}{geographical route data} for our analyses.
+To analyze the most reliable route, we followed two approaches: route optimization (\Cref{sec:methods_route}) and analysing external influences (\Cref{sec:methods_ext}). The first approach is to find all possible routes going from Stuttgart to Frankfurt (Main) and then identifying the route with the least mean delay (i.e., the most reliable route). Here, we found that the optimal route differs from the fastest route that Deutsche Bahn offers. The second approach is to investigate whether the day of the week, month, season, or holiday impact the delay. Here, we found several factors influencing the delay.
 
-To analyze the most reliable route going from Stuttgart to Frankfurt (Main), we followed two approaches: route optimization and analysing external influences. The first approach is to find all possible routes going from Stuttgart to Frankfurt (Main) and then identifying the route with the least mean delay (i.e., the most reliable route). The second approach is to investigate whether the day of the week, month, season, or holiday impact the delay.
+Our study aims to fill a gap in train delay research by shifting the focus from predicting delays to informing passengers beforehand about the most reliable route and the best time to go. This enables passengers to make informed decision about their journeys, so that they can pick the optimal route with confidence and without solely relying on taking the fastest route.
 
-Our study aims to fill a gap in train delay research by shifting the focus from predicting delays to informing passengers beforehand about the most reliable route and the best time to go. This enables passengers to make informed decision about their journeys. We aim to provide travelers with information, so that they can pick the optimal route with confidence and reliability.
-
-Motivate the problem, situation or topic you decided to work on. Describe why it matters (is it of societal, economic, scientific value?). Outline the rest of the paper (use references, e.g.~to \Cref{sec:methods}: What kind of data you are working with, how you analyse it, and what kind of conclusion you reached. The point of the introduction is to make the reader want to read the rest of the paper.
 
 \section{Data and Methods}\label{sec:methods}
 
-In this section, describe \emph{what you did}. Roughly speaking, explain what data you worked with, how or from where it was collected, it's structure and size. Explain your analysis, and any specific choices you made in it. Depending on the nature of your project, you may focus more or less on certain aspects. If you collected data yourself, explain the collection process in detail. If you downloaded data from the net, show an exploratory analysis that builds intuition for the data, and shows that you know the data well. If you are doing a custom analysis, explain how it works and why it is the right choice. If you are using a standard tool, it may still help to briefly outline it. Cite relevant works. You can use the \verb|\citep| and \verb|\citet| commands for this purpose \citep{mackay2003information}.
+We are working with \href{https://data.deutschebahn.com/dataset/ist-verkehrsdaten-der-db-cargo-auf-bst8-ebene.html}{train delay data} provided by the Deutsche Bahn, that consists of stations and stops that measured the number of trains and minutes of delay of all trains passing by in 2016. We are also using the \href{https://data.deutschebahn.com/dataset/betriebsstellen-gueterverkehr.html}{directory of operating sites}, containing the names and coordinates of the stations. For geographical information on routes of the rail transport network, we used \href{https://data.deutschebahn.com/dataset/betriebsstellen-gueterverkehr.html}{geographical route data}. Our train delay data consists of 757 007 entries, measuring the delay all over Germany throughout the year 2016. Figure 1 shows an overview of all stops and stations and their mean delay in 2016. The mean delay of all Germany in 2016 was 34.84 minutes. After merging all three datasets, our data consists of information about the stations and stops, their time stamp, their geographical data, their corresponding nearest routes and further information about the rails (e.g., railroad type, number of rails, speed limit or electrification).
+
+\begin{figure} % this figure made with
+% plt.rcParams.update(bundles.icml2022(column=”half”, nrows=num_rows, ncols=num_cols, usetex=False)))
+% fig,ax = plt.subplots(nrows=num_rows, ncols=num_cols)
+\begin{center}
+\includegraphics{fig/maps_KI_01_all_data_cmap.pdf} % note no [width=\textwidth] needed
+\end{center}
+\caption{Mean delay of trains in 2016 in Germany. Map data © OpenStreetMap contributors © CARTO.}
+\end{figure}
+
+\subsection{Route Optimization}\label{sec:methods_route}
+
+Our first approach is to find the optimal route from Stuttgart to Frankfurt (Main) (i.e., the route with the least mean delay). To do so, we first got all continuous routes that exist in Germany (\href{https://data.deutschebahn.com/dataset/betriebsstellen-gueterverkehr.html}{geographical route data}). We started by finding all routes that have a starting point in Stuttgart. Going from here, we found all adjacent routes that connect to these starting routes. We repeatedly found adjacent routes until we found all possible routes, starting in Stuttgart and terminating in Frankfurt (Main). Next, we connected the route data to the data containing the mean delay, measured by stops and stations. This was conducted by assigning the stops or stations to the route to which it has a distance that is less or equal to 0.01 latitudes or longitudes. This translates to a maximum distance to the matching route of about 0.7 to 1.11 km, depending on the specific latitude or longitude. Lastly, we calculated the mean delay per each possible route and found the route with the least mean delay.
+
+In order to compare our optimal route with the fastest route that Deutsche Bahn suggests, we collected all the stations that are included in the fastest route by hand. We also calculated the mean delay for this route.
+
+\subsection{Factors Influencing Delays}\label{sec:methods_ext}
 
 % This is the template for a figure from the original ICML submission pack. In lecture 10 we will discuss plotting in detail.
 % Refer to this lecture on how to include figures in this text.
-% 
+%
 % \begin{figure}[ht]
 % \vskip 0.2in
 % \begin{center}
@@ -168,17 +182,39 @@ In this section, describe \emph{what you did}. Roughly speaking, explain what da
 
 \section{Results}\label{sec:results}
 
-In this section outline your results. At this point, you are just stating the outcome of your analysis. You can highlight important aspects (``we observe a significantly higher value of $x$ over $y$''), but leave interpretation and opinion to the next section. This section absoultely \emph{has} to include at least two figures.
+\subsection{Route Optimization}\label{sec:results_route}
+
+We found 108 unique routes, all starting in Stuttgart and ending in Frankfurt (Main). The optimal route with the least mean delay included five unique pieces of trail tracks and included 42 stations or stops. The mean delay for our optimal route is 14.19 minutes. The fastest route by Deutsche Bahn contains 46 stations or stops with a mean delay of 35.65 minutes. Figure 2 displays a comparison of both routes. More visualizations and the code can be found in our \href{https://github.com/frederikpanse/db_project}{github repository}.
+
+\begin{figure} % this figure made with
+% plt.rcParams.update(bundles.icml2022(column=”half”, nrows=num_rows, ncols=num_cols, usetex=False)))
+% fig,ax = plt.subplots(nrows=num_rows, ncols=num_cols)
+\begin{center}
+\includegraphics{fig/maps_KI_03_reliable_vs_fastest_zoomed_Carto.pdf} % note no [width=\textwidth] needed
+\end{center}
+\caption{Most reliable route by our analyses and fastest route that Deutsche Bahn offers. Map data © OpenStreetMap contributors © CARTO.}
+\end{figure}
+
+\subsection{Factors Influencing Delays}\label{sec:results_ext}
 
 \section{Discussion \& Conclusion}\label{sec:conclusion}
 
-Use this section to briefly summarize the entire text. Highlight limitations and problems, but also make clear statements where they are possible and supported by the analysis. 
+The aim of our study was to find the most reliable route from Stuttgart to Frankfurt (Main). To do so, we conducted route optimization and proposed an optimized route that has less than half of the mean delay than the fastest route by Deutsche Bahn. In addition to that, we analyzed external factors that might influence train delay and found that the route's distance to the border of Germany, the (relative) number of train rides and the between centrality influence train delay the most.
+
+It is necessary to consider factors beyond simple travel time, such as the operational schedules of other trains and the centrality of specific stations depending on date train system. Additionally, DB operators should consider these factors when deciding train routes and schedules. Centrality metrics and capacity of train stations can be applied to train systems. Future research should explore the interconnectivity between shortest path under the assumption of no delays and probability of delay.
+
+Still, there are some limitations to our work. We only considered data from 2016, which might be outdated in 2024. The data we used consisted of missing values. For example, there was more data available for weekdays than for weekends, which might influence our results. In addition to that, we only did route optimization for the route from Stuttgart to Frankfurt (Main). This means we did not create a universal tool for reliable routes, but analysed a very specific route.
+
+The delays were computed on a daily average basis, potentially leading to varying results based on different time intervals. Furthermore, our analysis exclusively focused on delay times. A more comprehensive understanding could be achieved by constructing a model that considers both travel time and the probability of delays. The data from the database is incomplete, incorporating only about 35.31\% of the available records for Random Forest model development. Specifically, we considered data from stations with records available for at least 288 days, accounting for over 90\% of this period. Stations with no reported delays throughout the entire duration were excluded from the dataset.
+
+However, our results propose that there are more reliable routes than the routes that are already provided by Deutsche Bahn. The identification of factors influencing the train delay enables passengers to knowingly decide on the optimal route to go from Stuttgart to Frankfurt (Main).
+
 
 \section*{Contribution Statement}
 
-Explain here, in one sentence per person, what each group member contributed. For example, you could write: Max Mustermann collected and prepared data. Gabi Musterfrau and John Doe performed the data analysis. Jane Doe produced visualizations. All authors will jointly wrote the text of the report. Note that you, as a group, a collectively responsible for the report. Your contributions should be roughly equal in amount and difficulty.
+Explain here, in one sentence per person, what each group member contributed. For example, you could write: Sumitrra Bala Subramaniam worked on connecting the datasets and route optimization. Kim Zierahn worked on map visualizations. Jiha Kim worked on the factors influencing the delay and the random forest. Frederik Panse worked on factors influencing the delay and analyzing the difference between weekdays and weekends. All authors jointly wrote the text of the report.
 
-\section*{Notes} 
+\section*{Notes}
 
 \section{Analysis of Factors Influencing Delays}
 
@@ -195,7 +231,7 @@ The dataset used in this study is characterized by a significant imbalance, with
 
 \subsection{{Centrality Measures}}
 
-After calculating the correlation coefficients related to the delay times between stations, we created edges between two stations if the correlation coefficient was 0.4 or higher. The importance of variables in terms of between centrality was found to be very high, despite being a virtual relationship based on the correlation patterns of delay, rather than a physical connection. 
+After calculating the correlation coefficients related to the delay times between stations, we created edges between two stations if the correlation coefficient was 0.4 or higher. The importance of variables in terms of between centrality was found to be very high, despite being a virtual relationship based on the correlation patterns of delay, rather than a physical connection.
 
 
 The betweenness centrality ($C_B(v)$) of a node $v$ in a graph is calculated as the sum of the fraction of all pairs of nodes $(s, t)$, where $s \neq v \neq t$, for which node $v$ lies on the shortest path between $s$ and $t$. The formula for betweenness centrality is given by:
@@ -208,7 +244,7 @@ Here, $\sigma_{st}$ represents the total number of shortest paths from node $s$ 
 
 This measure provides an indication of how central a node is in terms of facilitating communication between other nodes in the network.
 
-The second centrality measure is closeness centrality. The closeness centrality ($C_C(v)$) of a node $v$ in a graph is a measure of how close it is to all other nodes in the network. It is defined as the reciprocal of the average shortest path distance from node $v$ to all other nodes. According to Ulrik [3], the formula for closeness centrality is given by:
+The second centrality measure is closeness centrality. The closeness centrality ($C_C(v)$) of a node $v$ in a graph is a measure of how close it is to all other nodes in the network. It is defined as the reciprocal of the average shortest path distance from node $v$ to all other nodes. According to Ulrik \cite{generic_comp}, the formula for closeness centrality is given by:
 
 \begin{equation}
 C_C(v) = \frac{1}{\sum_{u} d(v, u)}
@@ -221,38 +257,22 @@ Closeness centrality reflects how efficiently a node can communicate with other 
 
 
 
-As argued by Freeman [2], betweenness centrality is one of the most important indicators for a vertex or node because it refers to the extent of the vertex that is structurally central for standing in between others and the vertex can therefore facilitate or impede the transmission of information/goods [1]
+As argued by Freeman \cite{betweenness}, betweenness centrality is one of the most important indicators for a vertex or node because it refers to the extent of the vertex that is structurally central for standing in between others and the vertex can therefore facilitate or impede the transmission of information/goods \cite{centrality}.
 
-betweenness centrality can serve as a very useful tool for rail operators to plan their maintenance schedule because the more ‘central’ stations experience much more stress, resulting in high loadings on its facilities [1]
+betweenness centrality can serve as a very useful tool for rail operators to plan their maintenance schedule because the more ‘central’ stations experience much more stress, resulting in high loadings on its facilities \cite{centrality}.
 
 \subsection{{characteristics of station}}
 
-We considered three factors related to train stations, listed in order of variable importance: distance from the border, the ratio of the given date's train rides to the median of the usual train rides (Relative number of train rides), and the number of train rides. Within the choropleth map (Figure 1 
-), it was evident that significant delays occurred near the border. Additionally, the Relative number of train rides measures the likelihood of delays if the train station exceeds its capacity to handle train operations.
+We considered three factors related to train stations, listed in order of variable importance: distance from the border, the ratio of the given date's train rides to the median of the usual train rides (Relative number of train rides), and the number of train rides. Within the choropleth map (Figure 1), it was evident that significant delays occurred near the border. Additionally, the Relative number of train rides measures the likelihood of delays if the train station exceeds its capacity to handle train operations.
 
 \subsection{{Factors related to dates}}
 
 We analyzed the delays based on factors related to dates, including Day, Month, Dayofweek, and Holidays.
 ??maybe visualization??
 
-\subsection{{Conclusions}}
-
-It is necessary to consider factors beyond simple travel time, such as the operational schedules of other trains and the centrality of specific stations depending on date train system. Additionally, DB operators should consider these factors when deciding train routes and schedules. Centrality metrics and capacity of train stations can be applied to train systems. Future research should explore the interconnectivity between shortest path under the assumption of no delays and probability of delay. 
-
-
-
-
-\section{Limitations}
-
-
-The delays were computed on a daily average basis, potentially leading to varying results based on different time intervals. Furthermore, our analysis exclusively focused on delay times. A more comprehensive understanding could be achieved by constructing a model that considers both travel time and the probability of delays. The data from the database is incomplete, incorporating only about 35.31\% of the available records for Random Forest model development. Specifically, we considered data from stations with records available for at least 288 days, accounting for over 90\% of this period. Stations with no reported delays throughout the entire duration were excluded from the dataset. 
 
 \bibliography{bibliography}
-1. To, W.M. Centrality of an Urban Rail System. \textit{Urban Rail Transit} \textbf{1}, 249–256 (2015).
 
-2. Freeman LC (1977) A set of measures of centrality based on betweenness. Sociometry 40(1):35–41.
-
-3. Ulrik Brandes: On Variants of Shortest-Path Betweenness Centrality and their Generic Computation. Social Networks 30(2):136-145, 2008.
 \bibliographystyle{icml2023}
 
 
