@@ -30,7 +30,9 @@ geo_df = gpd.GeoDataFrame(data, geometry = geometry, crs = "EPSG:4326")  # Use t
 #### 01 map of Germany
 
 # Get a map of Germany, save as tif
-germany = cx.Place("Deutschland", source = cx.providers.OpenStreetMap.Mapnik)
+germany = cx.Place("Deutschland", source = cx.providers.OpenStreetMap.Mapnik, path = "../doc/fig/tifs/germany_osm.tif")
+germany = cx.Place("Deutschland", source = cx.providers.CartoDB.Positron, path = "../doc/fig/tifs/germany_Carto.tif")
+
 
 
 # Get the shape of Germany

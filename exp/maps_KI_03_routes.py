@@ -12,6 +12,9 @@ from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
 from matplotlib.colors import SymLogNorm
+from matplotlib.colors import LinearSegmentedColormap
+from tueplots.constants.color import rgb
+
 
 #### 00 read cleaned data
 from ipynb.fs.full.exploration_cleaning import get_data
@@ -645,6 +648,9 @@ with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches="tight")
     print(f"Plot saved as {pdf_filename}")
 
+
+
+
 #### with colormap ####
 
 
@@ -677,6 +683,10 @@ gdf_germany_fast = gpd.overlay(geo_df_fast, bb_poly.to_crs(geo_df_fast.crs), how
 gdf_germany_rel = gdf_germany_rel.to_crs(epsg=3395)
 gdf_germany_fast = gdf_germany_fast.to_crs(epsg=3395)
 
+
+
+
+
 #### 03 plot (zoomed)
 
 # set plotting stylesheet
@@ -692,9 +702,13 @@ gdf_germany_both = pd.concat([gdf_germany_rel, gdf_germany_fast])
 log_min_delay = np.log1p(gdf_germany_both["Minutes of delay"].min())
 log_max_delay = np.log1p(gdf_germany_both["Minutes of delay"].max())
 
+rb = LinearSegmentedColormap.from_list(
+    "rb", [rgb.tue_blue, rgb.tue_lightgold, rgb.tue_ocre], N=500
+)
+
 # Create ScalarMappable with common normalization
 norm = Normalize(vmin=log_min_delay, vmax=log_max_delay)
-sm = ScalarMappable(norm=norm, cmap="coolwarm")
+sm = ScalarMappable(norm=norm, cmap=rb)
 sm.set_array([])
 
 # Plot the points, create a colorbar for the points
@@ -748,6 +762,9 @@ with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches="tight")
     print(f"Plot saved as {pdf_filename}")
 
+
+
+
 #### 03 plot (zoomed) CARTO
 
 # set plotting stylesheet
@@ -763,9 +780,12 @@ gdf_germany_both = pd.concat([gdf_germany_rel, gdf_germany_fast])
 log_min_delay = np.log1p(gdf_germany_both["Minutes of delay"].min())
 log_max_delay = np.log1p(gdf_germany_both["Minutes of delay"].max())
 
+# create colormap
+# cmp = LinearSegmentedColormap.from_list("w2b", [(1, 1, 1), rgb.tue_blue], N=1024)
+
 # Create ScalarMappable with common normalization
 norm = Normalize(vmin=log_min_delay, vmax=log_max_delay)
-sm = ScalarMappable(norm=norm, cmap="coolwarm")
+sm = ScalarMappable(norm=norm, cmap=rb)
 sm.set_array([])
 
 # Plot the points, create a colorbar for the points
