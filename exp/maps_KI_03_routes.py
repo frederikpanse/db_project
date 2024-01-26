@@ -69,6 +69,8 @@ gdf_stations_fast = gdf_stations_fast.merge(data, on="Station or stop")
 print("The number of stations included in the fastest route are: {}".format(
     len(gdf_stations_fast["Station or stop"].unique())))
 
+
+
 #### FASTEST ROUTE BY DB (POINTS) ####
 
 #### 01 map of Germany

@@ -16,9 +16,9 @@ from matplotlib.colors import LinearSegmentedColormap
 from tueplots.constants.color import rgb
 
 
-rb = LinearSegmentedColormap.from_list(
-    "rb", [rgb.tue_blue, rgb.tue_lightgold, rgb.tue_ocre], N=500
-)
+# rb = LinearSegmentedColormap.from_list(
+#     "rb", [rgb.tue_blue, rgb.tue_lightgold, rgb.tue_ocre], N=500
+# )
 
 
 # show the colormap for testing
