@@ -137,7 +137,9 @@ If a group of Tübinger students would want to take a trip to Frankfurt (Main) b
 
 When traveling from one place to another by Deutsche Bahn, passengers often can't rely on arriving at their destination at the scheduled time. Even though real-time train delay is provided by the Deutsche Bahn, informing travelers about current delays, passengers don't have any information about the delay beforehand. Deutsche Bahn is able to identify the fastest route, without considering the mean delay of this route (e.g., \href{https://www.bahn.de/buchung/intern/start}{travel information}). Previous studies often focused on predicting train delay \cite{predtraindelay, largetrainnet, MLtraindel}. Our goal is to identify the most reliable train route going from Stuttgart to Frankfurt (Main).
 
-To analyze the most reliable route, we followed two approaches: route optimization (\Cref{sec:methods_route}) and analysing external influences (\Cref{sec:methods_ext}). The first approach is to find all possible routes going from Stuttgart to Frankfurt (Main) and then identifying the route with the least mean delay (i.e., the most reliable route). Here, we found that the optimal route differs from the fastest route that Deutsche Bahn offers. The second approach is to investigate whether the day of the week, month, season, or holiday impact the delay. Here, we found several factors influencing the delay.
+To analyze the most reliable route, we followed two approaches: route optimization (\Cref{sec:methods_route}) and analysing external influences (\Cref{sec:methods_ext}). The first approach is to find all possible routes going from Stuttgart to Frankfurt (Main) and then identifying the route with the least mean delay (i.e., the most reliable route). Here, we found that the optimal route differs from the fastest route that Deutsche Bahn offers. The second approach is to investigate whether the day of the week, month, season, or holiday impact the delay. Here, we found several factors influencing the delay. 
+
+We shed further light on one factor: weekday vs. weekend. As most regular passengers will usually take the train on either weekdays (e.g., commuting to work) or weekends (e.g., going home for the weekend), they might want to know if they should take a different path given their travel days. For this reason, we analyse if the overall most reliable path is also optimal when only considering weekdays or weekends.
 
 Our study aims to fill a gap in train delay research by shifting the focus from predicting delays to informing passengers beforehand about the most reliable route and the best time to go. This enables passengers to make informed decision about their journeys, so that they can pick the optimal route with confidence and without solely relying on taking the fastest route.
 
@@ -163,6 +165,11 @@ In order to compare our optimal route with the fastest route that Deutsche Bahn 
 
 \subsection{Factors Influencing Delays}\label{sec:methods_ext}
 
+To find whether any other path than the overall optimal one might be more 
+reliable when knowing that you would travel on a weekday or on a weekend, we
+calculated for each possible path, additionally to the overall mean, the mean 
+delay for weekdays and for weekends. 
+
 % This is the template for a figure from the original ICML submission pack. In lecture 10 we will discuss plotting in detail.
 % Refer to this lecture on how to include figures in this text.
 %
@@ -184,7 +191,7 @@ In order to compare our optimal route with the fastest route that Deutsche Bahn 
 
 \subsection{Route Optimization}\label{sec:results_route}
 
-We found 108 unique routes, all starting in Stuttgart and ending in Frankfurt (Main). The optimal route with the least mean delay included five unique pieces of trail tracks and included 42 stations or stops. The mean delay for our optimal route is 14.19 minutes. The fastest route by Deutsche Bahn contains 46 stations or stops with a mean delay of 35.65 minutes. Figure 2 displays a comparison of both routes. More visualizations and the code can be found in our \href{https://github.com/frederikpanse/db_project}{github repository}.
+We found 54 unique routes, all starting in Stuttgart and ending in Frankfurt (Main). The optimal route with the least mean delay included five unique pieces of trail tracks and included 42 stations or stops. The mean delay for our optimal route is 14.19 minutes. The fastest route by Deutsche Bahn contains 46 stations or stops with a mean delay of 35.65 minutes. Figure 2 displays a comparison of both routes. More visualizations and the code can be found in our \href{https://github.com/frederikpanse/db_project}{github repository}.
 
 \begin{figure} % this figure made with
 % plt.rcParams.update(bundles.icml2022(column=”half”, nrows=num_rows, ncols=num_cols, usetex=False)))
@@ -201,7 +208,8 @@ We found 108 unique routes, all starting in Stuttgart and ending in Frankfurt (M
 \begin{figure} 
     \includegraphics{fig/plot_FP_03_WeekdayWeekend.pdf}
     \caption{Comparing the mean delay for each path on a weekdays and on weekends.}
-\end{figure} 
+\end{figure}
+
 
 \section{Discussion \& Conclusion}\label{sec:conclusion}
 
@@ -222,7 +230,7 @@ Explain here, in one sentence per person, what each group member contributed. Fo
 
 \section*{Notes}
 
-\section{Analysis of Factors Influencing Delays}
+\section{Analysis of Factors Influencing Delays}
 
 In this section, we will provide comprehensive information on factors influencing train delays by examining the results of visualizations and random forest modeling together. We aim to present a detailed analysis of the factors contributing to train delays.
 
