@@ -704,13 +704,12 @@ gdf_germany_both = pd.concat([gdf_germany_rel, gdf_germany_fast])
 log_min_delay = np.log1p(gdf_germany_both["Minutes of delay"].min())
 log_max_delay = np.log1p(gdf_germany_both["Minutes of delay"].max())
 
-rb = LinearSegmentedColormap.from_list(
-    "rb", [rgb.tue_blue, rgb.tue_lightgold, rgb.tue_ocre], N=500
-)
+colorscheme = LinearSegmentedColormap.from_list(
+    "colorscheme", [rgb.tue_blue, rgb.tue_ocre], N=500)
 
 # Create ScalarMappable with common normalization
 norm = Normalize(vmin=log_min_delay, vmax=log_max_delay)
-sm = ScalarMappable(norm=norm, cmap=rb)
+sm = ScalarMappable(norm=norm, cmap=colorscheme)
 sm.set_array([])
 
 # Plot the points, create a colorbar for the points
@@ -782,12 +781,9 @@ gdf_germany_both = pd.concat([gdf_germany_rel, gdf_germany_fast])
 log_min_delay = np.log1p(gdf_germany_both["Minutes of delay"].min())
 log_max_delay = np.log1p(gdf_germany_both["Minutes of delay"].max())
 
-# create colormap
-# cmp = LinearSegmentedColormap.from_list("w2b", [(1, 1, 1), rgb.tue_blue], N=1024)
-
 # Create ScalarMappable with common normalization
 norm = Normalize(vmin=log_min_delay, vmax=log_max_delay)
-sm = ScalarMappable(norm=norm, cmap=rb)
+sm = ScalarMappable(norm=norm, cmap=colorscheme)
 sm.set_array([])
 
 # Plot the points, create a colorbar for the points
