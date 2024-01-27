@@ -16,8 +16,6 @@ from matplotlib.colors import LinearSegmentedColormap
 from tueplots.constants.color import rgb
 
 
-
-
 #### 00 read cleaned data
 from ipynb.fs.full.exploration_cleaning import get_data
 from ipynb.fs.full.exploration_cleaning import get_paths
@@ -52,11 +50,8 @@ geometry_points = [Point(xy) for xy in
 # Create GeoDataFrame
 geo_df = gpd.GeoDataFrame(gdf_stations_rel, geometry=geometry_points, crs="EPSG:4326")
 
-# map = cx.Place("Rhein", source = cx.providers.CartoDB.Positron, path = "map_Carto.tif")
+map = cx.Place("Rhein", source = cx.providers.CartoDB.Positron, path = "map_Carto.tif")
 
-# read tif file with rasterio
-with rasterio.open("map_Carto.tif") as r:
-    map = r
 
 #### 03 plot (zoomed) CARTO
 
@@ -74,7 +69,7 @@ log_max_delay = np.log1p(geo_df["Minutes of delay"].max())
 
 # create colormap
 colorscheme = LinearSegmentedColormap.from_list(
-    "colorscheme", [rgb.tue_blue, rgb.tue_ocre], N=500)
+    "colorscheme", [rgb.tue_blue, rgb.tue_mauve, rgb.tue_ocre], N = 500)
 
 # Create ScalarMappable with common normalization
 norm = Normalize(vmin=log_min_delay, vmax=log_max_delay)

@@ -705,7 +705,7 @@ log_min_delay = np.log1p(gdf_germany_both["Minutes of delay"].min())
 log_max_delay = np.log1p(gdf_germany_both["Minutes of delay"].max())
 
 colorscheme = LinearSegmentedColormap.from_list(
-    "colorscheme", [rgb.tue_blue, rgb.tue_ocre], N=500)
+    "colorscheme", [rgb.tue_blue, rgb.tue_mauve, rgb.tue_ocre], N = 500)
 
 # Create ScalarMappable with common normalization
 norm = Normalize(vmin=log_min_delay, vmax=log_max_delay)
