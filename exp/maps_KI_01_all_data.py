@@ -9,6 +9,8 @@ from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
 import numpy as np
+from matplotlib.colors import LinearSegmentedColormap
+from tueplots.constants.color import rgb
 
 
 
@@ -92,7 +94,7 @@ with PdfPages(pdf_filename) as pdf:
 
 
 
-#### 02 plot
+#### 02 plot - cmap - log scale
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, usetex = False))
@@ -106,9 +108,12 @@ gdf_germany.plot(ax = ax, markersize = 0, color = "k")
 log_min_delay = np.log1p(gdf_germany["Minutes of delay"].min())
 log_max_delay = np.log1p(gdf_germany["Minutes of delay"].max())
 
+colorscheme = LinearSegmentedColormap.from_list(
+    "colorscheme", [rgb.tue_blue, rgb.tue_mauve, rgb.tue_ocre], N = 500)
+
 # Create ScalarMappable with common normalization
 norm = Normalize(vmin = log_min_delay, vmax = log_max_delay)
-sm = ScalarMappable(norm = norm, cmap = "coolwarm")
+sm = ScalarMappable(norm = norm, cmap = colorscheme)
 sm.set_array([])
 
 # Plot the points, create a colorbar for the points
