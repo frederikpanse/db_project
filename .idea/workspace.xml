@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="renaming docs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exp/maps_KI_01_all_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/exp/maps_KI_01_all_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exp/maps_KI_03_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/exp/maps_KI_03_routes.py" afterDir="false" />
-    </list>
+    <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="updating maps" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -337,7 +333,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706532434708</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="working on maps">
+      <option name="closed" value="true" />
+      <created>1706533928520</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1706533928520</updated>
+    </task>
+    <task id="LOCAL-00023" summary="updating maps">
+      <option name="closed" value="true" />
+      <created>1706533951007</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1706533951007</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,11 +379,12 @@
     <MESSAGE value="Reorganizing the docs" />
     <MESSAGE value="Finetuning maps" />
     <MESSAGE value="Finetuning maps &amp; writing the report" />
-    <MESSAGE value="working on maps" />
     <MESSAGE value="working on maps, renaming docs" />
     <MESSAGE value="finetuning maps" />
     <MESSAGE value="renaming docs" />
-    <option name="LAST_COMMIT_MESSAGE" value="renaming docs" />
+    <MESSAGE value="working on maps" />
+    <MESSAGE value="updating maps" />
+    <option name="LAST_COMMIT_MESSAGE" value="updating maps" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/db_project$maps_KI_06_reliable_vs_fastest.coverage" NAME="maps_KI_06_reliable_vs_fastest Coverage Results" MODIFIED="1706098929142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
@@ -384,7 +397,7 @@
     <SUITE FILE_PATH="coverage/db_project$deutsche_bahn_frankfurt.coverage" NAME="deutsche_bahn_frankfurt Coverage Results" MODIFIED="1705919850675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm3.coverage" NAME="maps_KI_01_all data_osm3 Coverage Results" MODIFIED="1705826375149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_fastest_route.coverage" NAME="maps_KI_01_fastest_route Coverage Results" MODIFIED="1705852558007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
-    <SUITE FILE_PATH="coverage/db_project$maps_KI_03_routes.coverage" NAME="maps_KI_03_routes Coverage Results" MODIFIED="1706533165860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_03_routes.coverage" NAME="maps_KI_03_routes Coverage Results" MODIFIED="1706533651299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm2.coverage" NAME="maps_KI_01_all data_osm2 Coverage Results" MODIFIED="1705825358335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_fastest_route_points.coverage" NAME="maps_KI_01_fastest_route_points Coverage Results" MODIFIED="1705852901430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$exp_KI_01_matching_stations_with_routes.coverage" NAME="exp_KI_01_matching_stations_with_routes Coverage Results" MODIFIED="1705920190348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
