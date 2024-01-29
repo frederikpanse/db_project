@@ -151,7 +151,7 @@ plt.show()
 
 
 #### 03 Save as PDF
-pdf_filename = "../doc/fig/maps_KI_01_all_data_cmap_highres.pdf"
+pdf_filename = "../doc/fig/maps_KI_01_all_data_cmap.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")
