@@ -1,11 +1,9 @@
-import pandas as pd
 from shapely.geometry import Point, box
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import contextily as cx
 import rasterio
 from tueplots import bundles
-from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
 import numpy as np

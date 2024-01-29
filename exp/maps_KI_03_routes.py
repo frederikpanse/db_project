@@ -852,9 +852,15 @@ print(f"Plot saved as {pdf_filename}")
 
 
 
-#### 04 mean delay of both routes
+#### 04 mean delay and names of stations
 
 # get the mean delay of the fastest route
 print("The mean delay of the most reliable route is", gdf_stations_rel["Minutes of delay"].mean())
 print("The mean delay of the 'fastest' route (according to DB) is", gdf_stations_fast["Minutes of delay"].mean())
 
+# print the names of the stations included
+print("The stations included in the most reliable route are:")
+print(gdf_stations_rel["Name"].unique())
+
+print("The stations included in the 'fastest' route (according to DB) are:")
+print(gdf_stations_fast["Name"].unique())
