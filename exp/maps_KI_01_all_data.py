@@ -147,10 +147,11 @@ cbar.set_label("Minutes of delay (log scaled)")
 cbar.outline.set_edgecolor("none")
 
 
+plt.show()
 
 
 #### 03 Save as PDF
-pdf_filename = "../doc/fig/maps_KI_01_all_data_cmap.pdf"
+pdf_filename = "../doc/fig/maps_KI_01_all_data_cmap_highres.pdf"
 with PdfPages(pdf_filename) as pdf:
     pdf.savefig(fig, bbox_inches = "tight")
     print(f"Plot saved as {pdf_filename}")

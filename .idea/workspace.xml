@@ -5,25 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0c7ea41-b705-46fd-ba61-7835c4452d72" name="Changes" comment="working on maps">
+      <change afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data_cmap_highres.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data_cmap.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_01_all_data_cmap.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_03_reliable_vs_fastest_zoomed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_03_reliable_vs_fastest_zoomed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/maps_KI_03_reliable_vs_fastest_zoomed_Carto.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/maps_KI_03_reliable_vs_fastest_zoomed_Carto.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_fastest_route_points.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_fastest_route_points.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_fastest_route_points_full.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_fastest_route_points_full.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_fastest_route_points_zoomed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_fastest_route_points_zoomed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_line.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_line.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_line_full.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_line_full.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_line_zoomed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_line_zoomed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_points.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_points.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_points_full.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_points_full.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_points_zoomed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_most_reliable_route_points_zoomed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_reliable_vs_fastest_binary.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_reliable_vs_fastest_binary.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_reliable_vs_fastest_binary_zoomed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/other figs/maps_KI_03_reliable_vs_fastest_binary_zoomed.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/fig/tifs/germany_osm.tif" beforeDir="false" afterPath="$PROJECT_DIR$/doc/fig/tifs/germany_osm.tif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exp/deutsche_bahn_frankfurt.py" beforeDir="false" afterPath="$PROJECT_DIR$/exp/exp_SBS_02_deutsche_bahn_frankfurt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exp/maps_KI_01_all_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/exp/maps_KI_01_all_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exp/maps_KI_03_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/exp/maps_KI_03_routes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +169,9 @@
       <workItem from="1706364030413" duration="297000" />
       <workItem from="1706364409095" duration="132000" />
       <workItem from="1706369465980" duration="43000" />
-      <workItem from="1706439192258" duration="1124000" />
+      <workItem from="1706439192258" duration="2477000" />
+      <workItem from="1706457545537" duration="17000" />
+      <workItem from="1706516788982" duration="802000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <option name="closed" value="true" />
@@ -319,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706364322445</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="working on maps">
+      <option name="closed" value="true" />
+      <created>1706453922998</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1706453922998</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,7 +365,7 @@
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data_osm2.coverage" NAME="maps_KI_01_all data_osm2 Coverage Results" MODIFIED="1705825358335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_fastest_route_points.coverage" NAME="maps_KI_01_fastest_route_points Coverage Results" MODIFIED="1705852901430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$exp_KI_01_matching_stations_with_routes.coverage" NAME="exp_KI_01_matching_stations_with_routes Coverage Results" MODIFIED="1705920190348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
-    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data.coverage" NAME="maps_KI_01_all_data Coverage Results" MODIFIED="1706439209369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
+    <SUITE FILE_PATH="coverage/db_project$maps_KI_01_all_data.coverage" NAME="maps_KI_01_all_data Coverage Results" MODIFIED="1706517567508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exp" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_weekend_weekday_osm.coverage" NAME="maps_KI_01_weekend_weekday_osm Coverage Results" MODIFIED="1705830029829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_05_most_reliable_route_points.coverage" NAME="maps_KI_05_most_reliable_route_points Coverage Results" MODIFIED="1706035451563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
     <SUITE FILE_PATH="coverage/db_project$maps_KI_01_weekend_weekday.coverage" NAME="maps_KI_01_weekend_weekday Coverage Results" MODIFIED="1705852424347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/doc/fig" />
