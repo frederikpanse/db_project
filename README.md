@@ -4,7 +4,7 @@
   <img src="doc/fig/maps_KI_01_all_data_cmap.png" height="400">
 </p>
 
-This repo contains the code used for a project to find the most reliable train route going from Stuttgart to Frankfurt (Main) as part of the lecture Data Literacy at the University of Tuebingen.
+This repo contains the code used for a project to find the most reliable train route going from Stuttgart to Frankfurt (Main) as part of the lecture *Data Literacy* at the University of Tuebingen.
 
 ---
 
