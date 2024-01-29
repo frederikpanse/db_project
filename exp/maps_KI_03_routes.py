@@ -1,35 +1,33 @@
 import pandas as pd
 import numpy as np
-from shapely.geometry import Point, LineString, box
 import geopandas as gpd
 import matplotlib.pyplot as plt
-import matplotlib.colors as colors
-import matplotlib as mpl
 import contextily as cx
 import rasterio
+from shapely.geometry import Point, LineString, box
 from tueplots import bundles
-from matplotlib.backends.backend_pdf import PdfPages
+from tueplots.constants.color import rgb
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
-from matplotlib.colors import SymLogNorm
 from matplotlib.colors import LinearSegmentedColormap
-from tueplots.constants.color import rgb
 
 
 #### 00 read cleaned data
-from ipynb.fs.full.exploration_cleaning import get_data
-from ipynb.fs.full.exploration_cleaning import get_paths
+from ipynb.fs.full.exp_KI_01_exploration_cleaning import get_data
+from ipynb.fs.full.exp_KI_01_exploration_cleaning import get_paths
 
 data = get_data(which="mean")
 path_delays = get_paths()
 gdf_stations = pd.read_csv("../dat/stations_with_nearest_routes.csv", sep=",")
 data_routes = gpd.read_file("../dat/geo-strecke/strecken_polyline.shp")
 
-print("There are {} unique routes we found.".format(len(path_delays)))
+# print("There are {} unique routes we found.".format(len(path_delays)))
 
-#### 01 Routes
 
-## 1.1 Most reliable route
+
+
+#### MOST RELIABLE ROUTE BY US (POINTS) ####
+
 # get the route with the least delay = most reliable route
 paths_sorted = sorted(path_delays.items(), key=lambda x: x[1]["mean_delay"])
 rel_path = paths_sorted[0][1]["routes"]
@@ -45,7 +43,11 @@ gdf_stations_rel = gdf_stations_rel.merge(data, on="Station or stop")
 print("The number of stations included in the optimal route are: {}".format(
     len(gdf_stations_rel["Station or stop"].unique())))
 
-## 1.2 Fastest route
+
+
+
+#### FASTEST ROUTE BY DB (POINTS) ####
+
 # Fastest route that Deutsche Bahn offers
 fastest_route = [80290288,  # Stuttgart
                  80290270, 80297853, 80297846,
@@ -71,7 +73,8 @@ print("The number of stations included in the fastest route are: {}".format(
 
 
 
-#### FASTEST ROUTE BY DB (POINTS) ####
+
+#### PLOT THE FASTEST ROUTE ####
 
 #### 01 map of Germany
 # Extract LineString coordinates and create LineString geometries & point geometries
@@ -96,6 +99,8 @@ gdf_germany = gpd.overlay(geo_df_points, bb_poly.to_crs(geo_df_points.crs), how=
 
 # Ensure the data is in the proper geographic coordinate system
 gdf_germany_points = gdf_germany.to_crs(epsg=3395)
+
+
 
 #### 02 plot (full Germany map)
 
@@ -129,11 +134,12 @@ ax.legend(loc="upper left", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_fastest_route_points_full.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### 04 plot (zoomed on route)
+
+
+#### 03 plot (zoomed on route)
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -165,11 +171,12 @@ ax.legend(loc="upper right", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_fastest_route_points_zoomed.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### 05 plot both
+
+
+#### 04 plot both
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -210,14 +217,14 @@ ax2.legend(loc="upper right", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_fastest_route_points.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
-
-#### MOST RELIABLE ROUTE BY OUR MODEL (POINTS) ####
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
 
-#### 02 map of Germany
+
+#### PLOT THE MOST RELIABLE ROUTE BY OUR MODEL ####
+
+#### 01 map of Germany
 # Extract LineString coordinates and create LineString geometries & point geometries
 geometry_points = [Point(xy) for xy in
                    zip(gdf_stations_rel["Coordinate Longitude"], gdf_stations_rel["Coordinate Latitude"])]
@@ -241,7 +248,9 @@ gdf_germany = gpd.overlay(geo_df_points, bb_poly.to_crs(geo_df_points.crs), how=
 # Ensure the data is in the proper geographic coordinate system
 gdf_germany_points = gdf_germany.to_crs(epsg=3395)
 
-#### 03 plot (full Germany map)
+
+
+#### 02 plot (full Germany map)
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -273,11 +282,12 @@ ax.legend(loc="upper left", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_most_reliable_route_points_full.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### 04 plot (zoomed on route)
+
+
+#### 03 plot (zoomed on route)
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -309,11 +319,12 @@ ax.legend(loc="upper right", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_most_reliable_route_points_zoomed.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### 05 plot both
+
+
+#### 04 plot both
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -354,13 +365,13 @@ ax2.legend(loc="upper right", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_most_reliable_route_points.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### MOST RELIABLE ROUTE BY OUR MODEL (LINESTRINGS) ####
 
-## 1.1 Most reliable route
+
+#### PLOT THE MOST RELIABLE ROUTE BY OUR MODEL (LINESTRINGS) ####
+
 # get the route with the least delay = most reliable route
 paths_sorted = sorted(path_delays.items(), key=lambda x: x[1]["mean_delay"])
 rel_path = paths_sorted[0][1]["routes"]
@@ -392,14 +403,12 @@ data_delay_routes = data_delay_routes.groupby(["Route"]).mean()
 # again merge with data_routes to get the geometry
 data_delay_routes = pd.merge(data_delay_routes, data_routes, on="Route", how="left")
 
-# group the dataset by geometry
-# data_delay_routes = data_delay_routes.groupby(["geometry"]).mean()
-
 # only take columns Minutes of delay, Route, geometry
 data_delay_routes = data_delay_routes[["Minutes of delay", "Route", "geometry"]].copy()
 data_delay_routes = data_delay_routes.groupby(["geometry"], as_index=False).mean()
 
-#### 02 map of Germany
+
+#### 01 map of Germany
 # Extract LineString coordinates and create LineString geometries
 geometry_linestrings = [LineString(x) for x in data_delay_routes["geometry"]]
 
@@ -422,7 +431,9 @@ gdf_germany_linestrings = gpd.overlay(geo_df_linestrings, bb_poly.to_crs(geo_df_
 # Ensure the data is in the proper geographic coordinate system
 gdf_germany_linestrings = gdf_germany_linestrings.to_crs(epsg=3395)
 
-#### 03 plot (full Germany map)
+
+
+#### 02 plot (full Germany map)
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -454,11 +465,12 @@ ax.legend(loc="upper left", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_most_reliable_route_line_full.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### 04 plot (zoomed on route)
+
+
+#### 03 plot (zoomed on route)
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -490,11 +502,12 @@ ax.legend(loc="upper right", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_most_reliable_route_line_zoomed.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### 05 plot both
+
+
+#### 04 plot both
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -535,15 +548,17 @@ ax2.legend(loc="upper right", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_most_reliable_route_line.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### MOST RELIABLE ROUTE VS FASTEST ROUTE ####
+
+
+
+#### PLOT THE MOST RELIABLE ROUTE VS THE FASTEST ROUTE ####
 
 ### without colormap ####
 
-#### 02 map of Germany
+#### 01 map of Germany
 # Extract LineString coordinates and create LineString geometries & point geometries
 geometry_rel = [Point(xy) for xy in
                 zip(gdf_stations_rel["Coordinate Longitude"], gdf_stations_rel["Coordinate Latitude"])]
@@ -572,7 +587,9 @@ gdf_germany_fast = gpd.overlay(geo_df_fast, bb_poly.to_crs(geo_df_fast.crs), how
 gdf_germany_rel = gdf_germany_rel.to_crs(epsg=3395)
 gdf_germany_fast = gdf_germany_fast.to_crs(epsg=3395)
 
-#### 03 plot (full Germany map)
+
+
+#### 02 plot (full Germany map)
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -607,9 +624,10 @@ ax.legend(loc="upper left", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_reliable_vs_fastest_binary.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
+
+
 
 #### 03 plot (zoomed)
 
@@ -646,17 +664,15 @@ ax.legend(loc="lower left", frameon=False)
 
 # Save as PDF
 pdf_filename = "../doc/fig/other figs/maps_KI_03_reliable_vs_fastest_binary_zoomed.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
 
 
 
 #### with colormap ####
 
-
-#### 02 map of Germany
+#### 01 map of Germany
 # Extract LineString coordinates and create LineString geometries & point geometries
 geometry_rel = [Point(xy) for xy in
                 zip(gdf_stations_rel["Coordinate Longitude"], gdf_stations_rel["Coordinate Latitude"])]
@@ -687,9 +703,7 @@ gdf_germany_fast = gdf_germany_fast.to_crs(epsg=3395)
 
 
 
-
-
-#### 03 plot (zoomed)
+#### 02 plot (zoomed)
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column="half", nrows=1, ncols=2, usetex=False))
@@ -759,10 +773,8 @@ cbar.outline.set_edgecolor("none")
 
 # Save as PDF
 pdf_filename = "../doc/fig/maps_KI_03_reliable_vs_fastest_zoomed.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
-
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
 
 
@@ -833,11 +845,14 @@ cbar.outline.set_edgecolor("none")
 
 # Save as PDF
 pdf_filename = "../doc/fig/maps_KI_03_reliable_vs_fastest_zoomed_Carto.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches="tight")
-    print(f"Plot saved as {pdf_filename}")
+png_filename = "../doc/fig/maps_KI_03_reliable_vs_fastest_zoomed_Carto.png"
+fig.savefig(png_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
-#### 06 mean delay of most reliable route
+
+
+#### 04 mean delay of both routes
 
 # get the mean delay of the fastest route
 print("The mean delay of the most reliable route is", gdf_stations_rel["Minutes of delay"].mean())

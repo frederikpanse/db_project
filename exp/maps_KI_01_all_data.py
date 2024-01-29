@@ -16,9 +16,8 @@ from tueplots.constants.color import rgb
 
 
 #### 00 get cleaned data
-from ipynb.fs.full.exploration_cleaning import get_data
+from ipynb.fs.full.exp_KI_01_exploration_cleaning import get_data
 data = get_data(which = "mean")
-
 
 # create geometry column with a point object of the coordinates
 geometry = [Point(xy) for xy in zip(data["Coordinate Longitude"], data["Coordinate Latitude"])]
@@ -34,8 +33,7 @@ geo_df = gpd.GeoDataFrame(data, geometry = geometry, crs = "EPSG:4326")  # Use t
 # Get a map of Germany, save as tif
 germany = cx.Place("Deutschland", source = cx.providers.OpenStreetMap.Mapnik, path = "../doc/fig/tifs/germany_osm.tif")
 germany = cx.Place("Deutschland", source = cx.providers.CartoDB.Positron, path = "../doc/fig/tifs/germany_Carto.tif")
-
-
+germany = cx.Place("Deutschland", source = cx.providers.CartoDB.Voyager, path = "../doc/fig/tifs/germany_Carto_V.tif")
 
 # Get the shape of Germany
 with rasterio.open("../doc/fig/tifs/germany_osm.tif") as r:
@@ -83,18 +81,14 @@ gdf_germany[~condition].plot(ax = ax, markersize = 1, marker = "o", color = "cri
 # Add labels and legend
 ax.legend(loc = "upper left", frameon = False)
 
-
-
-
-#### 03 Save as PDF
+#### Save as PDF and PNG
 pdf_filename = "../doc/fig/maps_KI_01_all_data.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches = "tight")
-    print(f"Plot saved as {pdf_filename}")
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
 
 
-#### 02 plot - cmap - log scale
+#### 03 plot - cmap - log scale
 
 # set plotting stylesheet
 plt.rcParams.update(bundles.icml2022(column = "half", nrows = 1, ncols = 2, usetex = False))
@@ -118,8 +112,8 @@ sm.set_array([])
 
 # Plot the points, create a colorbar for the points
 gdf_germany["color"] = gdf_germany["Minutes of delay"].apply(lambda x: sm.to_rgba(np.log1p(x)))
-gdf_germany[gdf_germany["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany.loc[gdf_germany["Minutes of delay"] >= 0, "color"], markersize = 1, marker = "o")
-
+gdf_germany[gdf_germany["Minutes of delay"] >= 0].plot(ax = ax, color = gdf_germany.loc[gdf_germany["Minutes of delay"] >= 0, "color"],
+                                                       markersize = 0.3, marker = "o")
 
 # Add the base map
 cx.add_basemap(ax = ax, crs = gdf_germany.crs, source = "../doc/fig/tifs/germany_Carto.tif", alpha = 1)
@@ -146,15 +140,11 @@ cbar.set_label("Minutes of delay (log scaled)")
 # Remove border color
 cbar.outline.set_edgecolor("none")
 
-
-plt.show()
-
-
-#### 03 Save as PDF
+#### Save as PDF and PNG
 pdf_filename = "../doc/fig/maps_KI_01_all_data_cmap.pdf"
-with PdfPages(pdf_filename) as pdf:
-    pdf.savefig(fig, bbox_inches = "tight")
-    print(f"Plot saved as {pdf_filename}")
-
+png_filename = "../doc/fig/maps_KI_01_all_data_cmap.png"
+fig.savefig(png_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+fig.savefig(pdf_filename, dpi=1000, bbox_inches="tight", pad_inches=0.1, transparent=True)
+print(f"Plot saved as {pdf_filename}")
 
 print("The mean delay of all Germany in 2016 was", round(gdf_germany["Minutes of delay"].mean(), 2), "minutes.")
